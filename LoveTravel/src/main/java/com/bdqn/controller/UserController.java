@@ -139,7 +139,7 @@ public class UserController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return"403";
+			return"401";
 		}
 		request.setAttribute("error", "密码输入错误");
 		return "login";
@@ -161,7 +161,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "user/userView";
+		return "userPage/userView";
 		
 	}
 	
@@ -172,7 +172,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/user/userModify")
 	public String userModify(){
-		return "user/userModify";
+		return "userPage/userModify";
 		
 	}
 	
@@ -200,7 +200,7 @@ public class UserController {
 			return"redirect:/user/userView";
 		}
 		
-		return "user/userModify";
+		return "userPage/userModify";
 		
 	}
 	
@@ -212,7 +212,7 @@ public class UserController {
 	public String uploadPhoto(){
 		logger.debug("uploadPhoto================");
 		
-		return "user/uesrUploadPhoto";
+		return "userPage/uesrUploadPhoto";
 		
 	}
 	
@@ -251,7 +251,7 @@ public class UserController {
 			//上传文件超过规定大小
 			if(attach.getSize() > fileSize){
 				request.setAttribute("uploadError", Constants.FILEUPLOAD_ERROR_3);
-				return "user/uesrUploadPhoto";
+				return "userPage/uesrUploadPhoto";
 			}else if (suffix.equalsIgnoreCase("PNG") || suffix.equalsIgnoreCase("GIF") || suffix.equalsIgnoreCase("JPG")){
 				//上传图片的名称
 			    fileName = users.getPhone()+users.getUsername()+".jpg";
@@ -266,14 +266,14 @@ public class UserController {
 				} catch (Exception e) {
 					e.printStackTrace();
 					request.setAttribute("uploadError", Constants.FILEUPLOAD_ERROR_1);
-					return "user/uesrUploadPhoto";
+					return "userPage/uesrUploadPhoto";
 				}
 				photoPath = request.getContextPath()+"/statics/uploadfiles/"+fileName;
 				photoRealPath =path+File.separator+fileName;
 				
 			}else{
 				request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_2);
-				return "developer/appinfoadd";
+				return "userPage/uesrUploadPhoto";
 			}
 			
 		}
@@ -297,7 +297,7 @@ public class UserController {
 			return"redirect:/user/uploadPhoto";
 		}
 		
-		return "user/uesrUploadPhoto";
+		return "userPage/uesrUploadPhoto";
 		
 	}
 

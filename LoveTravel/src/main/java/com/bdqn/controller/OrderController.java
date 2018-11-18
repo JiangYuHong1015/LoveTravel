@@ -83,7 +83,7 @@ public class OrderController extends BaseController {
 		model.addAttribute("status", status);
 		
 		
-		return "user/hotelOrderView";
+		return "userPage/hotelOrderView";
 		
 	}
 	

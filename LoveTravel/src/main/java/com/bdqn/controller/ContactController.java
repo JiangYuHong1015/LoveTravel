@@ -42,7 +42,7 @@ public class ContactController extends BaseController {
 	@RequestMapping(value="/addContact",method = RequestMethod.GET)
 	public String addcontact(@ModelAttribute("contact")Contact contact){
 		logger.debug("contact=============");
-		return "user/contactAdd";
+		return "userPage/contactAdd";
 		
 	}
 	
@@ -75,7 +75,7 @@ public class ContactController extends BaseController {
 		if(flag){
 			return"redirect:/user/contactList";
 		}
-		return "user/contactAdd";
+		return "userPage/contactAdd";
 		
 	}
 	
@@ -138,7 +138,7 @@ public class ContactController extends BaseController {
 		model.addAttribute("queryPhone", queryPhone);
 	
 		
-		return "user/contactList";
+		return "userPage/contactList";
 		
 	}
 	
@@ -181,7 +181,7 @@ public class ContactController extends BaseController {
 		}
 		model.addAttribute("contact", contact);
 		
-		return "user/contactModify";
+		return "userPage/contactModify";
 		
 	}
 	
@@ -203,7 +203,7 @@ public class ContactController extends BaseController {
 			return"redirect:/user/contactList";
 		}
 		
-		return "user/contactModify";
+		return "userPage/contactModify";
 		
 	}
 	
