@@ -3,20 +3,35 @@
 <mapper namespace="com.bdqn.mapper.comments.CommentsMapper" >
   <resultMap id="BaseResultMap" type="com.bdqn.pojo.Comments" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="hotelId" property="hotelid" jdbcType="INTEGER" />
-    <result column="hotelName" property="hotelname" jdbcType="VARCHAR" />
-    <result column="cleanScore" property="cleanscore" jdbcType="INTEGER" />
-    <result column="locationScore" property="locationscore" jdbcType="INTEGER" />
-    <result column="serviceScore" property="servicescore" jdbcType="INTEGER" />
-    <result column="envScore" property="envscore" jdbcType="INTEGER" />
-    <result column="commentInfo" property="commentinfo" jdbcType="VARCHAR" />
-    <result column="totalScore" property="totalscore" jdbcType="INTEGER" />
-    <result column="createBy" property="createby" jdbcType="INTEGER" />
-    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
-    <result column="modifyBy" property="modifyby" jdbcType="INTEGER" />
-    <result column="modifyDate" property="modifydate" jdbcType="TIMESTAMP" />
-    <result column="orderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="hotelid" property="hotelid" jdbcType="INTEGER" />
+    <result column="hotelname" property="hotelname" jdbcType="VARCHAR" />
+    <result column="cleanscore" property="cleanscore" jdbcType="INTEGER" />
+    <result column="locationscore" property="locationscore" jdbcType="INTEGER" />
+    <result column="servicescore" property="servicescore" jdbcType="INTEGER" />
+    <result column="FacilitiesScore" property="facilitiesscore" jdbcType="INTEGER" />
+    <result column="commentinfo" property="commentinfo" jdbcType="VARCHAR" />
+    <result column="totalscore" property="totalscore" jdbcType="INTEGER" />
+    <result column="createby" property="createby" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="modifyby" property="modifyby" jdbcType="INTEGER" />
+    <result column="modifydate" property="modifydate" jdbcType="TIMESTAMP" />
+    <result column="orderno" property="orderno" jdbcType="VARCHAR" />
+    <result column="commentsImg" property="commentsimg" jdbcType="VARCHAR" />
   </resultMap>
+  
+  
+  <select id="getCommentsCount" resultType="int">
+  	select count(1) as count from comments
+  </select>
+  
+  <select id="getCommentsList" resultType="comments">
+  	select * from comments
+  		order by createdate DESC limit #{form},#{pageSize}
+  </select>
+  
+  
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -76,8 +91,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, hotelId, hotelName, cleanScore, locationScore, serviceScore, envScore, commentInfo, 
-    totalScore, createBy, createDate, modifyBy, modifyDate, orderNo
+    id, hotelid, hotelname, cleanscore, locationscore, servicescore, FacilitiesScore, 
+    commentinfo, totalscore, createby, createdate, modifyby, modifydate, orderno, commentsImg
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bdqn.pojo.CommentsExample" >
     select
@@ -110,16 +125,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bdqn.pojo.Comments" >
-    insert into comments (id, hotelId, hotelName, 
-      cleanScore, locationScore, serviceScore, 
-      envScore, commentInfo, totalScore, 
-      createBy, createDate, modifyBy, 
-      modifyDate, orderNo)
+    insert into comments (id, hotelid, hotelname, 
+      cleanscore, locationscore, servicescore, 
+      FacilitiesScore, commentinfo, totalscore, 
+      createby, createdate, modifyby, 
+      modifydate, orderno, commentsImg
+      )
     values (#{id,jdbcType=INTEGER}, #{hotelid,jdbcType=INTEGER}, #{hotelname,jdbcType=VARCHAR}, 
       #{cleanscore,jdbcType=INTEGER}, #{locationscore,jdbcType=INTEGER}, #{servicescore,jdbcType=INTEGER}, 
-      #{envscore,jdbcType=INTEGER}, #{commentinfo,jdbcType=VARCHAR}, #{totalscore,jdbcType=INTEGER}, 
+      #{facilitiesscore,jdbcType=INTEGER}, #{commentinfo,jdbcType=VARCHAR}, #{totalscore,jdbcType=INTEGER}, 
       #{createby,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP}, #{modifyby,jdbcType=INTEGER}, 
-      #{modifydate,jdbcType=TIMESTAMP}, #{orderno,jdbcType=VARCHAR})
+      #{modifydate,jdbcType=TIMESTAMP}, #{orderno,jdbcType=VARCHAR}, #{commentsimg,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.bdqn.pojo.Comments" >
     insert into comments
@@ -128,43 +145,46 @@
         id,
       </if>
       <if test="hotelid != null" >
-        hotelId,
+        hotelid,
       </if>
       <if test="hotelname != null" >
-        hotelName,
+        hotelname,
       </if>
       <if test="cleanscore != null" >
-        cleanScore,
+        cleanscore,
       </if>
       <if test="locationscore != null" >
-        locationScore,
+        locationscore,
       </if>
       <if test="servicescore != null" >
-        serviceScore,
+        servicescore,
       </if>
-      <if test="envscore != null" >
-        envScore,
+      <if test="facilitiesscore != null" >
+        FacilitiesScore,
       </if>
       <if test="commentinfo != null" >
-        commentInfo,
+        commentinfo,
       </if>
       <if test="totalscore != null" >
-        totalScore,
+        totalscore,
       </if>
       <if test="createby != null" >
-        createBy,
+        createby,
       </if>
       <if test="createdate != null" >
-        createDate,
+        createdate,
       </if>
       <if test="modifyby != null" >
-        modifyBy,
+        modifyby,
       </if>
       <if test="modifydate != null" >
-        modifyDate,
+        modifydate,
       </if>
       <if test="orderno != null" >
-        orderNo,
+        orderno,
+      </if>
+      <if test="commentsimg != null" >
+        commentsImg,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -186,8 +206,8 @@
       <if test="servicescore != null" >
         #{servicescore,jdbcType=INTEGER},
       </if>
-      <if test="envscore != null" >
-        #{envscore,jdbcType=INTEGER},
+      <if test="facilitiesscore != null" >
+        #{facilitiesscore,jdbcType=INTEGER},
       </if>
       <if test="commentinfo != null" >
         #{commentinfo,jdbcType=VARCHAR},
@@ -210,6 +230,9 @@
       <if test="orderno != null" >
         #{orderno,jdbcType=VARCHAR},
       </if>
+      <if test="commentsimg != null" >
+        #{commentsimg,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.bdqn.pojo.CommentsExample" resultType="java.lang.Integer" >
@@ -225,43 +248,46 @@
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.hotelid != null" >
-        hotelId = #{record.hotelid,jdbcType=INTEGER},
+        hotelid = #{record.hotelid,jdbcType=INTEGER},
       </if>
       <if test="record.hotelname != null" >
-        hotelName = #{record.hotelname,jdbcType=VARCHAR},
+        hotelname = #{record.hotelname,jdbcType=VARCHAR},
       </if>
       <if test="record.cleanscore != null" >
-        cleanScore = #{record.cleanscore,jdbcType=INTEGER},
+        cleanscore = #{record.cleanscore,jdbcType=INTEGER},
       </if>
       <if test="record.locationscore != null" >
-        locationScore = #{record.locationscore,jdbcType=INTEGER},
+        locationscore = #{record.locationscore,jdbcType=INTEGER},
       </if>
       <if test="record.servicescore != null" >
-        serviceScore = #{record.servicescore,jdbcType=INTEGER},
+        servicescore = #{record.servicescore,jdbcType=INTEGER},
       </if>
-      <if test="record.envscore != null" >
-        envScore = #{record.envscore,jdbcType=INTEGER},
+      <if test="record.facilitiesscore != null" >
+        FacilitiesScore = #{record.facilitiesscore,jdbcType=INTEGER},
       </if>
       <if test="record.commentinfo != null" >
-        commentInfo = #{record.commentinfo,jdbcType=VARCHAR},
+        commentinfo = #{record.commentinfo,jdbcType=VARCHAR},
       </if>
       <if test="record.totalscore != null" >
-        totalScore = #{record.totalscore,jdbcType=INTEGER},
+        totalscore = #{record.totalscore,jdbcType=INTEGER},
       </if>
       <if test="record.createby != null" >
-        createBy = #{record.createby,jdbcType=INTEGER},
+        createby = #{record.createby,jdbcType=INTEGER},
       </if>
       <if test="record.createdate != null" >
-        createDate = #{record.createdate,jdbcType=TIMESTAMP},
+        createdate = #{record.createdate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.modifyby != null" >
-        modifyBy = #{record.modifyby,jdbcType=INTEGER},
+        modifyby = #{record.modifyby,jdbcType=INTEGER},
       </if>
       <if test="record.modifydate != null" >
-        modifyDate = #{record.modifydate,jdbcType=TIMESTAMP},
+        modifydate = #{record.modifydate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.orderno != null" >
-        orderNo = #{record.orderno,jdbcType=VARCHAR},
+        orderno = #{record.orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentsimg != null" >
+        commentsImg = #{record.commentsimg,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -271,19 +297,20 @@
   <update id="updateByExample" parameterType="map" >
     update comments
     set id = #{record.id,jdbcType=INTEGER},
-      hotelId = #{record.hotelid,jdbcType=INTEGER},
-      hotelName = #{record.hotelname,jdbcType=VARCHAR},
-      cleanScore = #{record.cleanscore,jdbcType=INTEGER},
-      locationScore = #{record.locationscore,jdbcType=INTEGER},
-      serviceScore = #{record.servicescore,jdbcType=INTEGER},
-      envScore = #{record.envscore,jdbcType=INTEGER},
-      commentInfo = #{record.commentinfo,jdbcType=VARCHAR},
-      totalScore = #{record.totalscore,jdbcType=INTEGER},
-      createBy = #{record.createby,jdbcType=INTEGER},
-      createDate = #{record.createdate,jdbcType=TIMESTAMP},
-      modifyBy = #{record.modifyby,jdbcType=INTEGER},
-      modifyDate = #{record.modifydate,jdbcType=TIMESTAMP},
-      orderNo = #{record.orderno,jdbcType=VARCHAR}
+      hotelid = #{record.hotelid,jdbcType=INTEGER},
+      hotelname = #{record.hotelname,jdbcType=VARCHAR},
+      cleanscore = #{record.cleanscore,jdbcType=INTEGER},
+      locationscore = #{record.locationscore,jdbcType=INTEGER},
+      servicescore = #{record.servicescore,jdbcType=INTEGER},
+      FacilitiesScore = #{record.facilitiesscore,jdbcType=INTEGER},
+      commentinfo = #{record.commentinfo,jdbcType=VARCHAR},
+      totalscore = #{record.totalscore,jdbcType=INTEGER},
+      createby = #{record.createby,jdbcType=INTEGER},
+      createdate = #{record.createdate,jdbcType=TIMESTAMP},
+      modifyby = #{record.modifyby,jdbcType=INTEGER},
+      modifydate = #{record.modifydate,jdbcType=TIMESTAMP},
+      orderno = #{record.orderno,jdbcType=VARCHAR},
+      commentsImg = #{record.commentsimg,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -292,62 +319,66 @@
     update comments
     <set >
       <if test="hotelid != null" >
-        hotelId = #{hotelid,jdbcType=INTEGER},
+        hotelid = #{hotelid,jdbcType=INTEGER},
       </if>
       <if test="hotelname != null" >
-        hotelName = #{hotelname,jdbcType=VARCHAR},
+        hotelname = #{hotelname,jdbcType=VARCHAR},
       </if>
       <if test="cleanscore != null" >
-        cleanScore = #{cleanscore,jdbcType=INTEGER},
+        cleanscore = #{cleanscore,jdbcType=INTEGER},
       </if>
       <if test="locationscore != null" >
-        locationScore = #{locationscore,jdbcType=INTEGER},
+        locationscore = #{locationscore,jdbcType=INTEGER},
       </if>
       <if test="servicescore != null" >
-        serviceScore = #{servicescore,jdbcType=INTEGER},
+        servicescore = #{servicescore,jdbcType=INTEGER},
       </if>
-      <if test="envscore != null" >
-        envScore = #{envscore,jdbcType=INTEGER},
+      <if test="facilitiesscore != null" >
+        FacilitiesScore = #{facilitiesscore,jdbcType=INTEGER},
       </if>
       <if test="commentinfo != null" >
-        commentInfo = #{commentinfo,jdbcType=VARCHAR},
+        commentinfo = #{commentinfo,jdbcType=VARCHAR},
       </if>
       <if test="totalscore != null" >
-        totalScore = #{totalscore,jdbcType=INTEGER},
+        totalscore = #{totalscore,jdbcType=INTEGER},
       </if>
       <if test="createby != null" >
-        createBy = #{createby,jdbcType=INTEGER},
+        createby = #{createby,jdbcType=INTEGER},
       </if>
       <if test="createdate != null" >
-        createDate = #{createdate,jdbcType=TIMESTAMP},
+        createdate = #{createdate,jdbcType=TIMESTAMP},
       </if>
       <if test="modifyby != null" >
-        modifyBy = #{modifyby,jdbcType=INTEGER},
+        modifyby = #{modifyby,jdbcType=INTEGER},
       </if>
       <if test="modifydate != null" >
-        modifyDate = #{modifydate,jdbcType=TIMESTAMP},
+        modifydate = #{modifydate,jdbcType=TIMESTAMP},
       </if>
       <if test="orderno != null" >
-        orderNo = #{orderno,jdbcType=VARCHAR},
+        orderno = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="commentsimg != null" >
+        commentsImg = #{commentsimg,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bdqn.pojo.Comments" >
     update comments
-    set hotelId = #{hotelid,jdbcType=INTEGER},
-      hotelName = #{hotelname,jdbcType=VARCHAR},
-      cleanScore = #{cleanscore,jdbcType=INTEGER},
-      locationScore = #{locationscore,jdbcType=INTEGER},
-      serviceScore = #{servicescore,jdbcType=INTEGER},
-      envScore = #{envscore,jdbcType=INTEGER},
-      commentInfo = #{commentinfo,jdbcType=VARCHAR},
-      totalScore = #{totalscore,jdbcType=INTEGER},
-      createBy = #{createby,jdbcType=INTEGER},
-      createDate = #{createdate,jdbcType=TIMESTAMP},
-      modifyBy = #{modifyby,jdbcType=INTEGER},
-      modifyDate = #{modifydate,jdbcType=TIMESTAMP},
-      orderNo = #{orderno,jdbcType=VARCHAR}
+    set hotelid = #{hotelid,jdbcType=INTEGER},
+      hotelname = #{hotelname,jdbcType=VARCHAR},
+      cleanscore = #{cleanscore,jdbcType=INTEGER},
+      locationscore = #{locationscore,jdbcType=INTEGER},
+      servicescore = #{servicescore,jdbcType=INTEGER},
+      FacilitiesScore = #{facilitiesscore,jdbcType=INTEGER},
+      commentinfo = #{commentinfo,jdbcType=VARCHAR},
+      totalscore = #{totalscore,jdbcType=INTEGER},
+      createby = #{createby,jdbcType=INTEGER},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      modifyby = #{modifyby,jdbcType=INTEGER},
+      modifydate = #{modifydate,jdbcType=TIMESTAMP},
+      orderno = #{orderno,jdbcType=VARCHAR},
+      commentsImg = #{commentsimg,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

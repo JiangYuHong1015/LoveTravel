@@ -32,6 +32,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.bdqn.pojo.User;
 import com.bdqn.service.user.UserService;
 import com.bdqn.tools.Constants;
+import com.bdqn.tools.ImagesUploadSupport;
 import com.mysql.jdbc.StringUtils;
 
 @Controller
@@ -232,7 +233,7 @@ public class UserController {
 		
 		User users = (User)session.getAttribute(Constants.USER_SESSION);
 		
-		//图片上传的相对路径
+		/*//图片上传的相对路径
 		String photoPath = null;
 		//图片上传的绝对路径
 		String photoRealPath = null ;
@@ -276,13 +277,20 @@ public class UserController {
 				return "userPage/uesrUploadPhoto";
 			}
 			
+		}*/
+		
+		String fileuploadInfo = ImagesUploadSupport.uploadPhotoSave(session, request, attach);
+		if(Constants.FILEUPLOAD_ERROR_1.equals(fileuploadInfo) || Constants.FILEUPLOAD_ERROR_2.equals(fileuploadInfo)
+				|| Constants.FILEUPLOAD_ERROR_3.equals(fileuploadInfo)){
+			request.setAttribute("uploadError", fileuploadInfo);
+			return"userPage/uesrUploadPhoto";
 		}
 	
 		user.setId(users.getId());
-		user.setPhotoName(fileName);
-		user.setPhotoOldName(oldPhotoName);
-		user.setPhotoPath(photoPath);
-		user.setPhotoRealPath(photoRealPath);
+		//user.setPhotoName(fileName);
+		//user.setPhotoOldName(oldPhotoName);
+		user.setPhotoPath(fileuploadInfo);
+		//user.setPhotoRealPath(photoRealPath);
 		user.setModifyby(users.getId());
 		user.setModifydate(new Date());
 		

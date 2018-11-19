@@ -6,8 +6,17 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface CommentsMapper {
+    
+    //获取评论总数量
+    int getCommentsCount() throws Exception;
+    
+    //获取评论列表
+    List<Comments> getCommentsList(@Param(value="form")Integer currentPageNo,@Param(value="pageSize")Integer pageSize ) throws Exception;
+    
+   
+    
     int countByExample(CommentsExample example);
-
+    
     int deleteByExample(CommentsExample example);
 
     int deleteByPrimaryKey(Integer id);

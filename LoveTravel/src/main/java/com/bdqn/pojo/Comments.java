@@ -2,6 +2,11 @@ package com.bdqn.pojo;
 
 import java.util.Date;
 
+import org.jboss.logging.Field;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Comments {
     private Integer id;
 
@@ -15,7 +20,7 @@ public class Comments {
 
     private Integer servicescore;
 
-    private Integer envscore;
+    private Integer facilitiesscore;
 
     private String commentinfo;
 
@@ -30,6 +35,8 @@ public class Comments {
     private Date modifydate;
 
     private String orderno;
+
+    private String commentsimg;
 
     public Integer getId() {
         return id;
@@ -79,12 +86,12 @@ public class Comments {
         this.servicescore = servicescore;
     }
 
-    public Integer getEnvscore() {
-        return envscore;
+    public Integer getFacilitiesscore() {
+        return facilitiesscore;
     }
 
-    public void setEnvscore(Integer envscore) {
-        this.envscore = envscore;
+    public void setFacilitiesscore(Integer facilitiesscore) {
+        this.facilitiesscore = facilitiesscore;
     }
 
     public String getCommentinfo() {
@@ -141,5 +148,13 @@ public class Comments {
 
     public void setOrderno(String orderno) {
         this.orderno = orderno == null ? null : orderno.trim();
+    }
+
+    public String getCommentsimg() {
+        return commentsimg;
+    }
+
+    public void setCommentsimg(String commentsimg) {
+        this.commentsimg = commentsimg == null ? null : commentsimg.trim();
     }
 }

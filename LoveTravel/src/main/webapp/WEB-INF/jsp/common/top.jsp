@@ -349,7 +349,7 @@ a.advisory {
 		<ul class="yui3-u-1" id="qd-nav">
 			<li class="qd-usercare "><a href="${pageContext.request.contextPath }/user/contactList"><i></i>联系人</a></li>
 			<li class="qd-news "><a href="${pageContext.request.contextPath }/user/hotelOrderView"><i></i>我的订单</a></li>
-			<li class="qd-square "><a href="http://www.kgc.cn/my/question"><i></i>我的点评</a></li>
+			<li class="qd-square "><a href="${pageContext.request.contextPath }/user/commentsList"><i></i>我的点评</a></li>
 			<li class="qd-task "><a href="http://www.kgc.cn/my/task"><i></i>我的攻略</a></li>
 			<li class="qd-qnd "><a href="http://www.kgc.cn/my/wallet"><i></i>我的收藏</a></li>
 			<li class="qd-set "><a href="${pageContext.request.contextPath }/user/userView"><i></i>账户管理</a></li>
