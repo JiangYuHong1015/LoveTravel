@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>机票</title>
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-	<link rel="stylesheet" href="css/cityselect.css">
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/flyTicket.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>机票</title>
+<link rel="shortcut icon" type="${pageContext.request.contextPath }/statics/image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/cityselect.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/font-awesome.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/flyTicket.css">
 
 </head>
 <body>
+
+
 
 <!-- 头部开始 -->
 	<div class="i-top clearfix">
@@ -27,7 +33,7 @@
 					<li class="i-top-phone">
 						<a href="#"><i class="icon-mobile-phone"></i></a>
 						<div class="i-top-app i-top-appL">
-							<img src="images/img/erweima_1126.jpg" height="102" width="102" alt="">
+							<img src="${pageContext.request.contextPath }/statics/images/img/erweima_1126.jpg" height="102" width="102" alt="">
 							<p>手机扫码快速下载</p>
 							<p>App享受最多50% 优惠力度</p>
 						</div>
@@ -35,7 +41,7 @@
 					<li class="i-top-phone i-top-wei">
 						<a href="#"><i class="icon-comments"></i></a>
 						<div class="i-top-app i-top-app-wei">
-							<img src="images/img/erweima_1126.jpg" height="102" width="102" alt="">
+							<img src="${pageContext.request.contextPath }/statics/images/img/erweima_1126.jpg" height="102" width="102" alt="">
 							<p>i旅行微信公众号: <a href="#">ilvxing</a></p>
 							<p>手机扫一扫，享受专属福利</p>
 						</div>
@@ -287,7 +293,7 @@
 	   						</div>
 	   						<!--1-->
 	   						<div class="discount i_show">
-	   							<form action="">
+	   							<form action="flyTicketList" method="post">
 	   								<div class="i_destin i_hang">航程类型
 		   								<label>
 											<input name="flightway"  checked="checked" type="radio">单程
@@ -300,13 +306,13 @@
 										</label>
 		   							</div>
 	   								<div class="i_live">
-	   								出发城市  <input type="text" placeholder="北京" />第一程日期  <input type="text" placeholder="yy-mm-dd" class="Wdate" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
+	   								出发城市  <input type="text" placeholder="上海" name="leaveCity" />第一程日期  <input type="text" placeholder="yy-mm-dd" class="Wdate" name="leaveDate" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
 	   								</div>
-	   								<div class="i_rank i_live">
+	   								<!-- <div class="i_rank i_live">
 	   								中转城市  <input type="text" placeholder="上海" />第二程日期  <input type="text" placeholder="yy-mm-dd" class="Wdate" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
-	   								</div>
+	   								</div> -->
 	   								<div class="keyword i-fly-keyword">
-	   									到达城市 <input type="text" placeholder="广州" />
+	   									到达城市 <input type="text" placeholder="武汉" name="arriveCity" />
 	   									<div class="i_key">
 		   									<a href="">温泉</a>、<a href="">亲子</a>、<a href="">自由行</a>、<a href="">名胜古迹</a>、<a href="">都市购物</a>
 	   									</div>
@@ -317,7 +323,7 @@
 	   						</div>
 	   						<!--2-->
 	   						<div class="discount">
-	   							<form action="">
+	   							<form action="flyTicketList" method="post">
 	   								<div class="i_destin i_hang">航程类型
 		   								<label>
 											<input name="flightway"  checked="checked" type="radio">单程
@@ -330,23 +336,14 @@
 										</label>
 		   							</div>
 	   								<div class="i_live">
-	   									入住时间  <input type="text" placeholder="2016.12待定" class="Wdate" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
-	   									退房时间  <input type="text"  class="Wdate" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
+	   								出发城市  <input type="text" placeholder="北京"  name="leaveCity"/>第一程日期  <input type="text" placeholder="yy-mm-dd" class="Wdate" name="leaveDate" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
 	   								</div>
-	   								<div class="i_rank">
-	   								每间住客数  <select name="" id="">
-	   									 	<option value="1"> 1成人 </option>
-											<option value="2" selected="selected"> 2成人 </option>
-											<option value="3"> 3成人 </option>
-											<option value="4"> 4成人 </option>
-											<option value="5"> 5成人 </option>
-											<option value="6"> 6成人 </option>
-											<option value="7"> 7成人 </option>
-											<option value="8"> 8成人 </option>
-	   								     </select>
-	   								</div>
-	   								<div class="keyword">
-	   									关键词 <input type="text" placeholder="海岛" /> 
+	   								<div class="keyword i-fly-keyword">
+	   									到达城市 <input type="text" placeholder="新加坡" name="arriveCity" />
+	   									<div class="i_key">
+		   									<a href="">温泉</a>、<a href="">亲子</a>、<a href="">自由行</a>、<a href="">名胜古迹</a>、<a href="">都市购物</a>
+	   									</div>
+	   									
 	   								</div>
 	   								<button class="i_btn i_btn_hai">搜索行程 ></button>
 	   							</form>
@@ -598,16 +595,16 @@
 	</div>
 	<ul class="i-fly-salepro">
 		<li>
-			<a href="flyTicketList.html"><img src="images/img/flyTicket_xxx1202_10.jpg" height="174" width="281" alt=""></a>
+			<a href="flyTicketList.html"><img src="${pageContext.request.contextPath }/statics/images/img/flyTicket_xxx1202_10.jpg" height="174" width="281" alt=""></a>
 		</li>
 		<li>
-			<a href="flyTicketList.html"><img src="images/img/ftyj01_0315_03.jpg" height="174" width="281" alt=""></a>
+			<a href="flyTicketList.html"><img src="${pageContext.request.contextPath }/statics/images/img/ftyj01_0315_03.jpg" height="174" width="281" alt=""></a>
 		</li>
 		<li>
-			<a href="flyTicketList.html"><img src="images/img/ftyj01_0315_05.jpg" height="174" width="281" alt=""></a>
+			<a href="flyTicketList.html"><img src="${pageContext.request.contextPath }/statics/images/img/ftyj01_0315_05.jpg" height="174" width="281" alt=""></a>
 		</li>
 		<li class="flylastli">
-			<a href="flyTicketList.html"><img src="images/img/ftyj01_0315_07.jpg" height="174" width="281" alt=""></a>
+			<a href="flyTicketList.html"><img src="${pageContext.request.contextPath }/statics/images/img/ftyj01_0315_07.jpg" height="174" width="281" alt=""></a>
 		</li>
 	</ul>
 	
@@ -653,10 +650,6 @@
 				<a href="#">热门</a>
 				<a href="#">国内特价机票</a>
 				<a href="#">国外特价机票</a>
-				<a href="#">亚洲</a>
-				<a href="#">欧洲</a>
-				<a href="#">美洲</a>
-				<a href="#">非洲</a>
 			</div>
 			<a class="i-fly-salemore">更多特价机票 ></a>
 		</div>
@@ -870,156 +863,20 @@
 </section>
 <!-- 特价机票汇总结束 -->
 
+<%@include file="../common/down.jsp"%>
 
+<script src="${pageContext.request.contextPath }/statics/lib/jquery-1.11.1.min.js"></script>
+<script src="${pageContext.request.contextPath }/statics/lib/cityselect.js"></script>
+<script src="${pageContext.request.contextPath }/statics/lib/echarts.min.js"></script>
+<script src="${pageContext.request.contextPath }/statics/lib/My97DatePicker/WdatePicker.js"></script>
 
-<!-- 贴心的服务开始 -->
-<div class="i_download">
-	<div class="i_area clearfix">
-		<div class="i_downleft">
-			<h2>下载<i></i>手机客户端</h2>
-			<p>
-				特价机票、一折酒店、出行安全保障、预约担保<br/>
-				最佳旅行路线、吃喝玩乐享在手
-
-			</p>
-			<a href="#">立刻下载</a>
-		</div>
-		<div class="i_downright">
-			<div class='i_wechat'>
-				<img src="images/icon/i_wechat_11.jpg" alt="">
-				<span>微信公众平台</span>
-			</div>
-			<div class="i_APP">
-				<img src="images/icon/i_APP_11.jpg" alt="">
-				<span>APP下载</span>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="i_service clearfix">
-	<div class="i_area">
-		<ul>
-			<li>
-				<h3>贴心的服务</h3>
-				<p>业内领先服务标准 用户保障服务</p>
-			</li>
-			<li>
-				<h3>优质的价格</h3>
-				<p>极具竞争力的价格 无任何隐形消费</p>
-			</li>
-			<li>
-				<h3>4008-xxx-6666</h3>
-				<p>24小时客服热线 无时不刻在您身边</p>
-			</li>
-			
-		</ul>
-
-		<dl>
-			<dt>旅游资讯</dt>
-			<dd>
-				<a href="#">宾馆索引</a>
-				<a href="#">攻略索引</a>
-			</dd>
-			<dd>
-				<a href="#">机票索引</a>
-				<a href="#">网站导航</a>
-			</dd>
-			<dd>
-				<a href="#">机票索引</a>
-				<a href="#">网站导航</a>
-			</dd>
-			<dd>
-				<a href="#">机票索引</a>
-				<a href="#">网站导航</a>
-			</dd>
-			<dd>
-				<a href="#">企业差旅索引</a>
-				
-			</dd>
-		</dl>
-
-		<dl>
-			<dt>加盟合作</dt>
-			<dd>
-				<a href="#">宾馆索引</a>
-				<a href="#">攻略索引</a>
-			</dd>
-			<dd>
-				<a href="#">机票索引</a>
-				<a href="#">网站导航</a>
-			</dd>
-			<dd>
-				<a href="#">机票索引</a>
-				<a href="#">网站导航</a>
-			</dd>
-			<dd>
-				<a href="#">机票索引</a>
-				<a href="#">网站导航</a>
-			</dd>
-			<dd>
-				<a href="#">企业差旅索引</a>
-				
-			</dd>
-		</dl>
-
-		<dl>
-			<dt>关于我们</dt>
-			<dd>
-				<a href="#">宾馆索引</a>
-				<a href="#">攻略索引</a>
-			</dd>
-			<dd>
-				<a href="#">机票索引</a>
-				<a href="#">网站导航</a>
-			</dd>
-			<dd>
-				<a href="#">机票索引</a>
-				<a href="#">网站导航</a>
-			</dd>
-			<dd>
-				<a href="#">机票索引</a>
-				<a href="#">网站导航</a>
-			</dd>
-			<dd>
-				<a href="#">企业差旅索引</a>
-				
-			</dd>
-		</dl>
-	</div>
-</div>
-<!-- 贴心的服务结束 -->
-
-<!-- footer开始 -->
-<div class="i-footer clearfix">
-	<div class="i-footer-wrap">
-		<p>Copyright©1999-2016, ctrip.com. All rights reserved. | <a href="#">ICP证：沪B2</a></p>
-		<p><span class="i-footer-hui"></span>沪公网备310105020000xx号</p>
-		<p>旅游违法行为举报电话12318 丨服务质量投诉电话 962020 丨<a href="#">北京市旅游网站落实诚信建设主体责任承诺书</a></p>
-		<ul>
-			<li><a href="#"><img src="images/icon/icon1126_11.jpg" height="32" width="88" alt=""></a></li>
-			<li><a href="#"><img src="images/icon/icon1126_13.jpg" height="32" width="88" alt=""></a></li>
-			<li><a href="#"><img src="images/icon/icon1126_15.jpg" height="32" width="88" alt=""></a></li>
-			<li><a href="#"><img src="images/icon/icon1126_17.jpg" height="32" width="88" alt=""></a></li>
-			<li><a href="#"><img src="images/icon/icon1126_19.jpg" height="32" width="88" alt=""></a></li>
-			<li><a href="#"><img src="images/icon/icon1126_21.jpg" height="32" width="88" alt=""></a></li>
-			<li><a href="#"><img src="images/icon/icon1126_23.jpg" height="32" width="88" alt=""></a></li>
-			<li><a href="#"><img src="images/icon/icon1126_25.jpg" height="32" width="128" alt=""></a></li>
-			<li><a href="#"><img src="images/icon/icon1126_27.jpg" height="32" width="102" alt=""></a></li>
-		</ul>
-	</div>
-</div>
-<!-- footer结束 -->
-
-<script src="lib/jquery-1.11.1.min.js"></script>
-<script src="lib/cityselect.js"></script>
-<script src="lib/echarts.min.js"></script>
-<script src="lib/My97DatePicker/WdatePicker.js"></script>
-
-<script src="js/common.js"></script>
-<script src="js/flyTicket.js"></script>
+<script src="${pageContext.request.contextPath }/statics/js/common.js"></script>
+<script src="${pageContext.request.contextPath }/statics/js/flyTicket.js"></script>
 	
 </body>
 </html>
+
+
 
 
 

@@ -83,11 +83,11 @@
 										</c:forEach>
 									</tbody>
 								</table>
-								<input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
+								<input type="hidden" id="totalPageCount" value="${pages.totalPageCount}"/>
 							  	<c:import url="../common/rollpage.jsp">
-						          	<c:param name="totalCount" value="${totalCount}"/>
-						          	<c:param name="currentPageNo" value="${currentPageNo}"/>
-						          	<c:param name="totalPageCount" value="${totalPageCount}"/>
+						          	<c:param name="totalCount" value="${pages.totalCount}"/>
+						          	<c:param name="currentPageNo" value="${pages.currentPageNo}"/>
+						          	<c:param name="totalPageCount" value="${pages.totalPageCount}"/>
 						        </c:import>
 								
 							</div>

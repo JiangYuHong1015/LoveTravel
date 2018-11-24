@@ -64,10 +64,10 @@
 				<li class="current"><a href="${pageContext.request.contextPath }/" ><i class="icon-home"></i>首页</a></li>
 				<li><a href="${pageContext.request.contextPath }/statics/travel/index.html"><i class="icon-globe"></i>旅游</a></li>
 				<li><a href="${pageContext.request.contextPath }/statics/tavern/index.html"><i class="icon-hospital"></i>酒店</a></li>
-				<li><a href="${pageContext.request.contextPath }/statics/html/flyTicket.html"><i class="icon-plane"></i>机票</a></li>
+				<li><a href="${pageContext.request.contextPath }/flyTicket"><i class="icon-plane"></i>机票</a></li>
 				<!-- <li><a href="#"><i class="icon-credit-card"></i>门票</a></li> -->
 				<li><a href="${pageContext.request.contextPath }/statics/strategy/index.html"><i class="icon-book"></i>攻略</a></li>
-				<li><a href="${pageContext.request.contextPath }/user/userView"><i class="icon-globe"></i>个人中心</a></li>
+				<li><a href="${pageContext.request.contextPath }/user/userView"><i class="icon-person"></i>个人中心</a></li>
 			</ul>
 			<div class="i-nav-login">
 				<a href="login.html">登陆</a>
@@ -3466,7 +3466,6 @@
 <!-- footer结束 -->
 
 </body>
-</html>
 
 <script src="${pageContext.request.contextPath }/statics/lib/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/statics/lib/cityselect.js"></script>

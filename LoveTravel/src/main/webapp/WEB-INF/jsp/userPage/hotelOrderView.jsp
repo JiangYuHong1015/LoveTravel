@@ -80,9 +80,8 @@
 																			<div class="coursePro f14" id="per_31257" data-code="31257"></div>
 																
 																			<ul class="courseNote f14">
-																				<li><a href="http://www.kgc.cn/my/note.shtml?id=31257">删除</a></li>
-																				<li><a href="http://www.kgc.cn/my/note/comment.shtml?id=31257">详情</a></li>
-																				<!-- <li><a href="http://www.kgc.cn/my/note/comment.shtml?id=31257">详情</a></li> -->
+																				<li><a  class="deleteOrder" hotelId="${hotelorder.id }" hotelName="${hotelorder.hotelname }">删除</a></li>
+																				<li><a  class="orderInfo" hotelId="${hotelorder.id }" hotelName="${hotelorder.hotelname }">详情</a></li>
 																				<li><a class="commentAdd" hotelId="${hotelorder.id }" hotelOrderNo="${hotelorder.orderno }" hotelName="${hotelorder.hotelname }">评论</a></li>
 																						
 																			</ul>

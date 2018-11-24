@@ -31,6 +31,28 @@ public class HotelOrderServiceImpl implements HotelOrderService {
 		return count;
 	}
 
+	@Override
+	public String deleteHotelOrderById(Integer id) throws Exception {
+		String temp = null;
+		int count  = hotelOrderMapper.deleteHotelOrderById(id);
+		if(count == 0){
+			temp = "notexist";
+		}else if(count > 0){
+			temp="true";
+		}else{
+			temp="false";
+		}
+		
+		return temp;
+	}
+
+	@Override
+	public Hotelorder getHotelOrderInfoById(Integer id) throws Exception {
+		
+		Hotelorder hotelorder = hotelOrderMapper.getHotelOrderInfoById(id);
+		return hotelorder;
+	}
+
 	
 
 }

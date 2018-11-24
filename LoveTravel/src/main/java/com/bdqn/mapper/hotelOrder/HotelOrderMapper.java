@@ -20,4 +20,10 @@ public interface HotelOrderMapper {
 	//根据userId获取订单总数量
 	int getHotelOrderCount(@Param(value="userId") Integer userId,@Param(value="hotelname")String hotelname,
 			   			   @Param(value="orderstatus")String orderstatus)throws Exception;
+	
+	//根据id删除订单
+	int deleteHotelOrderById(@Param(value="id")Integer id)throws Exception;
+	
+	//根据id查看订单详情
+	Hotelorder getHotelOrderInfoById(@Param(value="id")Integer id)throws Exception;
 }

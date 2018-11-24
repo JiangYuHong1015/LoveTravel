@@ -153,13 +153,6 @@
 </div>
 <!-- footer结束 -->
 
-</body>
-</html>
-
-
-
-
-
 <%@include file="js.jsp"%>
 </body>
 </html>

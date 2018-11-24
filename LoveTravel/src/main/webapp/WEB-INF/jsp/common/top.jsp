@@ -257,7 +257,7 @@ a.advisory {
 		</div>
 		<div class="i-hotline fr">
 			<ul>
-				<li><a href="http://www.kgc.cn/my/course.shtml">首页</a></li>
+				<li><a href="${pageContext.request.contextPath }/">首页</a></li>
 				
 				<li><a href="#">客服中心</a></li>
 				<li>|</li>

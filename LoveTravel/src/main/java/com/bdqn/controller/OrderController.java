@@ -1,6 +1,7 @@
 package com.bdqn.controller;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONArray;
 import com.bdqn.pojo.Hotelorder;
 import com.bdqn.pojo.User;
 import com.bdqn.service.hotelOrder.HotelOrderService;
@@ -37,6 +40,10 @@ public class OrderController extends BaseController {
 			@RequestParam(value="queryName",required=false)String queryName,
 			@RequestParam(value="status",required=false)String status,
 			@RequestParam(value="pageIndex",required=false)String pageIndex){
+		logger.debug("hotelOrderView===========>");
+		logger.debug("queryName===========>"+queryName);
+		logger.debug("status===========>"+status);
+		logger.debug("pageIndex===========>"+pageIndex);
 		
 		User user = (User)session.getAttribute(Constants.USER_SESSION);
 		int userId = user.getId();
@@ -87,6 +94,46 @@ public class OrderController extends BaseController {
 		
 	}
 	
+	
+	@RequestMapping(value="/deleteHorderOrder")
+	@ResponseBody
+	public String deleteHotelOrder(@RequestParam(value="id")String id){
+		logger.debug("deleteHotelOrder===========>");
+		
+		HashMap<String,String> resultMap = new HashMap<String, String>();
+		String resultInfo = null;
+		
+		//根据id删除订单，拿到返回结果
+		try {
+			resultInfo = hotelOrderService.deleteHotelOrderById(Integer.parseInt(id));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//将返回的结果放入集合
+		resultMap.put("result", resultInfo);
+		return JSONArray.toJSONString(resultMap);
+		
+	}
+	
+	@RequestMapping(value="/orderDetialView",method=RequestMethod.GET)
+	public String orderDetialView(String id,Model model){
+		
+		Hotelorder hotelorder = null;
+		try {
+			hotelorder = hotelOrderService.getHotelOrderInfoById(Integer.parseInt(id));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("hotelorder", hotelorder);
+		return "userPage/hotelOrderInfo";
+		
+	}
 
 	
 	

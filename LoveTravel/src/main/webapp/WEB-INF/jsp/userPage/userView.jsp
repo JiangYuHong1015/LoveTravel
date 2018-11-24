@@ -66,7 +66,7 @@
 </div>
 
 <%@include file="../common/down.jsp"%>
-<<script type="text/javascript">
+<script type="text/javascript">
 $("#send").on("click",function(){
 	window.location.href="userModify";
 });

@@ -84,9 +84,6 @@ public class CommentController extends BaseController {
 	@RequestMapping(value="/commentsList")
 	public String getCommentsList(Model model,@RequestParam(value="pageIndex",required=false)String pageIndex){
 		
-		//需要做分页
-		
-		
 		//总数量
 		int totalCount = 0;
 		try {

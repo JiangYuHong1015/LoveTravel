@@ -32,8 +32,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 	 
 	 </select>
-
+	 
+	 <!--  根据id删除订单 -->
+	 <delete id="deleteHotelOrderById" parameterType="int">
+	 	delete from hotelorder where id = #{id}
+	 </delete>
+	 
+	 <!--  根据id查找订单 -->
+	 <select id="getHotelOrderInfoById" resultType="Hotelorder">
+	 	select h.*,o.status AS orderStatusName from hotelOrder h,orderstatus o
+	 	 where h.orderStatus = o.id and h.id=#{id}
+	 </select>
+	 
 	
-	
+	 
+	 
 	
 </mapper>

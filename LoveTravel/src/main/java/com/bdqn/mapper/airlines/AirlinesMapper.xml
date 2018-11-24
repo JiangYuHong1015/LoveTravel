@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.mapper.airlines.AirlinesMapper" >
+  <resultMap id="BaseResultMap" type="com.bdqn.pojo.Airlines" >
+    <id column="AID" property="aid" jdbcType="INTEGER" />
+    <result column="AirlineName" property="airlinename" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getAllAirlines" resultType="Airlines">
+  		select aid,airlinename from Airlines
+  </select>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    AID, AirlineName
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bdqn.pojo.AirlinesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from airlines
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from airlines
+    where AID = #{aid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from airlines
+    where AID = #{aid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bdqn.pojo.AirlinesExample" >
+    delete from airlines
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bdqn.pojo.Airlines" >
+    insert into airlines (AID, AirlineName)
+    values (#{aid,jdbcType=INTEGER}, #{airlinename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bdqn.pojo.Airlines" >
+    insert into airlines
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aid != null" >
+        AID,
+      </if>
+      <if test="airlinename != null" >
+        AirlineName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="airlinename != null" >
+        #{airlinename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bdqn.pojo.AirlinesExample" resultType="java.lang.Integer" >
+    select count(*) from airlines
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update airlines
+    <set >
+      <if test="record.aid != null" >
+        AID = #{record.aid,jdbcType=INTEGER},
+      </if>
+      <if test="record.airlinename != null" >
+        AirlineName = #{record.airlinename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update airlines
+    set AID = #{record.aid,jdbcType=INTEGER},
+      AirlineName = #{record.airlinename,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bdqn.pojo.Airlines" >
+    update airlines
+    <set >
+      <if test="airlinename != null" >
+        AirlineName = #{airlinename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AID = #{aid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bdqn.pojo.Airlines" >
+    update airlines
+    set AirlineName = #{airlinename,jdbcType=VARCHAR}
+    where AID = #{aid,jdbcType=INTEGER}
+  </update>
+</mapper>

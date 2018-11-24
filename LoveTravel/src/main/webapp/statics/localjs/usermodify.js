@@ -100,12 +100,8 @@ $(function(){
 	});
 	
 	
-	/*back.bind("click",function(){
-		window.location.herf="userView";
-		
-	})*/
 	back.on("click",function(){
-		window.location.href="userView";
+		window.location.href="../";
 	});
 	
 	

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.mapper.line.LineMapper" >
+  <resultMap id="BaseResultMap" type="com.bdqn.pojo.Line" >
+    <id column="LID" property="lid" jdbcType="INTEGER" />
+    <result column="leave_city" property="leaveCity" jdbcType="VARCHAR" />
+    <result column="arrive_city" property="arriveCity" jdbcType="VARCHAR" />
+    <result column="leave_airport" property="leaveAirport" jdbcType="VARCHAR" />
+    <result column="arrive_airport" property="arriveAirport" jdbcType="VARCHAR" />
+    <result column="lineType" property="linetype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    LID, leave_city, arrive_city, leave_airport, arrive_airport, lineType
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bdqn.pojo.LineExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from line
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from line
+    where LID = #{lid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from line
+    where LID = #{lid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bdqn.pojo.LineExample" >
+    delete from line
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bdqn.pojo.Line" >
+    insert into line (LID, leave_city, arrive_city, 
+      leave_airport, arrive_airport, lineType
+      )
+    values (#{lid,jdbcType=INTEGER}, #{leaveCity,jdbcType=VARCHAR}, #{arriveCity,jdbcType=VARCHAR}, 
+      #{leaveAirport,jdbcType=VARCHAR}, #{arriveAirport,jdbcType=VARCHAR}, #{linetype,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bdqn.pojo.Line" >
+    insert into line
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lid != null" >
+        LID,
+      </if>
+      <if test="leaveCity != null" >
+        leave_city,
+      </if>
+      <if test="arriveCity != null" >
+        arrive_city,
+      </if>
+      <if test="leaveAirport != null" >
+        leave_airport,
+      </if>
+      <if test="arriveAirport != null" >
+        arrive_airport,
+      </if>
+      <if test="linetype != null" >
+        lineType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lid != null" >
+        #{lid,jdbcType=INTEGER},
+      </if>
+      <if test="leaveCity != null" >
+        #{leaveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveCity != null" >
+        #{arriveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveAirport != null" >
+        #{leaveAirport,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveAirport != null" >
+        #{arriveAirport,jdbcType=VARCHAR},
+      </if>
+      <if test="linetype != null" >
+        #{linetype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bdqn.pojo.LineExample" resultType="java.lang.Integer" >
+    select count(*) from line
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update line
+    <set >
+      <if test="record.lid != null" >
+        LID = #{record.lid,jdbcType=INTEGER},
+      </if>
+      <if test="record.leaveCity != null" >
+        leave_city = #{record.leaveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arriveCity != null" >
+        arrive_city = #{record.arriveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leaveAirport != null" >
+        leave_airport = #{record.leaveAirport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arriveAirport != null" >
+        arrive_airport = #{record.arriveAirport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linetype != null" >
+        lineType = #{record.linetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update line
+    set LID = #{record.lid,jdbcType=INTEGER},
+      leave_city = #{record.leaveCity,jdbcType=VARCHAR},
+      arrive_city = #{record.arriveCity,jdbcType=VARCHAR},
+      leave_airport = #{record.leaveAirport,jdbcType=VARCHAR},
+      arrive_airport = #{record.arriveAirport,jdbcType=VARCHAR},
+      lineType = #{record.linetype,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bdqn.pojo.Line" >
+    update line
+    <set >
+      <if test="leaveCity != null" >
+        leave_city = #{leaveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveCity != null" >
+        arrive_city = #{arriveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveAirport != null" >
+        leave_airport = #{leaveAirport,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveAirport != null" >
+        arrive_airport = #{arriveAirport,jdbcType=VARCHAR},
+      </if>
+      <if test="linetype != null" >
+        lineType = #{linetype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LID = #{lid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bdqn.pojo.Line" >
+    update line
+    set leave_city = #{leaveCity,jdbcType=VARCHAR},
+      arrive_city = #{arriveCity,jdbcType=VARCHAR},
+      leave_airport = #{leaveAirport,jdbcType=VARCHAR},
+      arrive_airport = #{arriveAirport,jdbcType=VARCHAR},
+      lineType = #{linetype,jdbcType=VARCHAR}
+    where LID = #{lid,jdbcType=INTEGER}
+  </update>
+</mapper>
