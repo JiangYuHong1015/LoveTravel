@@ -43,7 +43,6 @@
 				              	<option value="2">已取消</option>
 				              	<option value="3">已完成</option>
 				              </select>
-				              <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
 				            </div>
 		         		  </div>
 					  </li>
@@ -153,3 +152,4 @@
 <%@include file="../common/down.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
 <script src="${pageContext.request.contextPath }/statics/localjs/hotelOrderView.js"></script>
+<script src="${pageContext.request.contextPath }/statics/localjs/top.js"></script>		

@@ -73,3 +73,4 @@
 <%@include file="../common/down.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
 <script src="${pageContext.request.contextPath }/statics/localjs/hotelOrderView.js"></script>
+<script src="${pageContext.request.contextPath }/statics/localjs/top.js"></script>		

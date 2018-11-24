@@ -306,13 +306,13 @@
 										</label>
 		   							</div>
 	   								<div class="i_live">
-	   								出发城市  <input type="text" placeholder="上海" name="leaveCity" />第一程日期  <input type="text" placeholder="yy-mm-dd" class="Wdate" name="leaveDate" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
+	   								出发城市  <input type="text" placeholder="上海" name="leaveCity" required="required" />第一程日期  <input type="text" placeholder="yy-mm-dd" class="Wdate" name="leaveDate" required="required" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
 	   								</div>
 	   								<!-- <div class="i_rank i_live">
 	   								中转城市  <input type="text" placeholder="上海" />第二程日期  <input type="text" placeholder="yy-mm-dd" class="Wdate" onfocus="WdatePicker({doubleCalendar:true,dateFmt:'yyyy-MM-dd'})"/>
 	   								</div> -->
 	   								<div class="keyword i-fly-keyword">
-	   									到达城市 <input type="text" placeholder="武汉" name="arriveCity" />
+	   									到达城市 <input type="text" placeholder="武汉" name="arriveCity" required="required" />
 	   									<div class="i_key">
 		   									<a href="">温泉</a>、<a href="">亲子</a>、<a href="">自由行</a>、<a href="">名胜古迹</a>、<a href="">都市购物</a>
 	   									</div>

@@ -92,12 +92,6 @@
 								
 							</div>
 						</div>
-					<%-- 	<input type="hidden" id="totalPageCount" value="${totalPageCount}"/>
-					  	<c:import url="../common/rollpage.jsp">
-				          	<c:param name="totalCount" value="${totalCount}"/>
-				          	<c:param name="currentPageNo" value="${currentPageNo}"/>
-				          	<c:param name="totalPageCount" value="${totalPageCount}"/>
-			          	</c:import> --%>
 					</div>
 				</div>
 			</div>
@@ -111,3 +105,4 @@
 <%@include file="../common/down.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
 <script src="${pageContext.request.contextPath }/statics/localjs/hotelOrderView.js"></script>
+<script src="${pageContext.request.contextPath }/statics/localjs/top.js"></script>		

@@ -145,7 +145,7 @@
 		
 		<div class="flight_item">
 			<span>从</span>
-			<input class="cityone" placeholder="出发城市" type="text" id="citySelect_three">
+			<input class="cityone" placeholder="出发城市" type="text" id="citySelect_three" value="">
 			<i class="icon-map-marker"></i>
 		</div>
 		<div class="flight_item_change">
@@ -153,7 +153,7 @@
 		</div>
 		<div class="flight_item">
 			<span>从</span>
-			<input class="citytwo" placeholder="到达城市" type="text" id="citySelect_four">
+			<input class="citytwo" placeholder="到达城市" type="text" id="citySelect_four" value="">
 			<i class="icon-map-marker"></i>
 		</div>
 		<div class="flight_item flight_clder">
@@ -174,7 +174,7 @@
 	<div class="searchHistory">
 		<h3>历史查询：</h3>
 		<p>
-			单程 北京 - 上海 2016-10-25
+			单程 ${leaveCity } - ${arriveCity } 出发日期：${leaveDate }
 		</p>
 	</div>
 	<!-- from 结束 -->
@@ -617,29 +617,46 @@
 			</div>
 		</div>
 		<div class="flight-right-con">
+		<form action="flyTicketList" method="post">
 			<div class="flight-sort clearfix">
 				<ul>
 					<li>
 					
 					<!-- 开始修改jsp -->
 						<div class="select_box">
-			            <span class="select_txt">请选择</span><i class="arr icon-angle-down"></i>
+			            <span class="select_txt">航空公司</span><i class="arr icon-angle-down"></i>
 			              
 			              
 			                <div class="option">
 			                	<c:forEach var="airlines" items="${airlinesList }">
-			                    	<a href="#">东方航空</a>
+			                    	<a class="airCompany" aid="${airlines.aid }" leaveCity="${leaveCity }" arriveCity="${arriveCity }" leaveDate="${leaveDate }">${airlines.airlinename }</a>
 			                   </c:forEach>
-			                    <!-- <a href="#">海南航空</a>
-			                    <a href="#">华夏航空</a>
-			                    <a href="#">南方航空</a>
-			                    <a href="#">四川航空</a> -->
 			                </div>
 			                
 			                
 			            </div>
 			            
 			           
+					</li>
+					<li>
+					<input type="hidden" name="leaveCity"  value="${leaveCity }"/>
+					<input type="hidden" name="arriveCity"  value="${arriveCity }"/>
+					<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+		              <select name="airlineName" id="airlineName" class="form-control has-feedback-left" required="required">
+		              	<c:forEach var="airlines" items="${airlinesList }">
+		                	<option value="${airlines.airlinename }">${airlines.airlinename }</option>
+		                </c:forEach>
+		              	
+		              	
+		              </select>
+		            </div>
+					
+					</li>
+					
+					<li>
+					<div class="select_box">
+						<button>提交</button>
+					</div>
 					</li>
 					<li>
 						<div class="select_box">
@@ -660,17 +677,10 @@
 			                </div>
 			            </div>
 					</li>
-					<!-- <li>
-						<div class="select_box">
-			                <span class="select_txt">舱位</span><i class="arr icon-angle-down"></i>
-			                <div class="option">
-			                    <a href="#">经济舱</a>
-			                    <a href="#">公务/头等舱</a>
-			                </div>
-			            </div>
-					</li> -->
+					
 				</ul>
 			</div>
+		</form>	
 
 			<div class="sort-line clearfix">
 				<ul>

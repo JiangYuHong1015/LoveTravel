@@ -6,7 +6,7 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
   <div class="yui3-u-1 center-ask fix">
 		<div class="yui3-u-1 center-ask fix">
-			<span class="cen-note-t left"> <a href="/my/jobOE"
+			<span class="cen-note-t left"> <a href="#"
 				class="yui3-u uc-ask-tab-on">账号信息</a> 
 				 <a href="${pageContext.request.contextPath }/user/uploadPhoto" class="yui3-u ">上传头像</a>
 			</span>
@@ -66,11 +66,23 @@
 </div>
 
 <%@include file="../common/down.jsp"%>
+<script src="${pageContext.request.contextPath }/statics/localjs/top.js"></script>		
 <script type="text/javascript">
 $("#send").on("click",function(){
 	window.location.href="userModify";
 });
+
+
 $("#back").on("click",function(){
-	window.location.href="../";
+	//alert("modify: "+referer);
+	if(referer != undefined 
+		&& null != referer 
+		&& "" != referer
+		&& "null" != referer
+		&& referer.length > 4){
+	 window.location.href = referer;
+	}else{
+		history.back(-1);
+	}
 });
 </script>

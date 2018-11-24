@@ -24,6 +24,12 @@
     <script src="${pageContext.request.contextPath }/statics/js/common.js"></script>
     <script src="${pageContext.request.contextPath }/statics/js/util.js"></script>
 
+<style type="text/css">
+	body{
+		background:#87CEFA;
+	}
+
+</style>
 
 </head>
 
@@ -84,6 +90,7 @@
                                        <font color="red"></font>
                             </div>
                         </div>
+                        
 
                         <div class="form-group margin-left-100">
                             <div class="input-group input-group-lg col-sm-9">
@@ -164,7 +171,7 @@
 
     </aside>
     <footer><!-- footer开始 -->
-        <div class="i-footer clearfix">
+        <div style="background:#87CEFA"  class="i-footer clearfix">
             <div class="i-footer-wrap">
                 <p>Copyright©1999-2016, ctrip.com. All rights reserved. | <a href="#">ICP证：沪B2</a></p>
                 <p><span class="i-footer-hui"></span>沪公网备310105020000xx号</p>

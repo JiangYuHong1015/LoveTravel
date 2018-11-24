@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/common.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/register.css"/>
     
+
+    
 </head>
 
 <body>
@@ -106,7 +108,7 @@
 
      <footer>
          <div class="i-footer clearfix">
-             <div class="i-footer-wrap">
+             <div  class="i-footer-wrap">
                  <p>Copyright©1999-2016, ctrip.com. All rights reserved. | <a href="#">ICP证：沪B2</a></p>
                  <p><span class="i-footer-hui"></span>沪公网备310105020000xx号</p>
                  <p>旅游违法行为举报电话12318 丨服务质量投诉电话 962020 丨<a href="#">北京市旅游网站落实诚信建设主体责任承诺书</a></p>

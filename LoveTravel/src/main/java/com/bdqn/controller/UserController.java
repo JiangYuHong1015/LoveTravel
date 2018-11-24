@@ -210,9 +210,10 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/user/uploadPhoto")
-	public String uploadPhoto(){
+	public String uploadPhoto(/*HttpSession session,Model model*/){
 		logger.debug("uploadPhoto================");
-		
+	/*	User users = (User)session.getAttribute(Constants.USER_SESSION);
+		model.addAttribute("users", users);*/
 		return "userPage/uesrUploadPhoto";
 		
 	}
@@ -226,7 +227,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/user/uploadPhotoSave")
-	public String uploadPhotoSave(User user,HttpSession session,HttpServletRequest request,
+	public String uploadPhotoSave(HttpSession session,HttpServletRequest request,
 			@RequestParam(value="photo",required=false)MultipartFile attach){
 	
 		logger.debug("uploadPhotoSave================");
@@ -286,25 +287,26 @@ public class UserController {
 			return"userPage/uesrUploadPhoto";
 		}
 	
-		user.setId(users.getId());
+		//user.setId(users.getId());
 		//user.setPhotoName(fileName);
 		//user.setPhotoOldName(oldPhotoName);
-		user.setPhotoPath(fileuploadInfo);
+		users.setPhotoPath(fileuploadInfo);
 		//user.setPhotoRealPath(photoRealPath);
-		user.setModifyby(users.getId());
-		user.setModifydate(new Date());
+		users.setModifyby(users.getId());
+		users.setModifydate(new Date());
 		
 		boolean flag = false;
 		try {
-			flag = userService.updatePhoto(user);
+			flag = userService.updatePhoto(users);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		if(flag){
+			logger.debug("uploadPhoto================"+flag);
+			//return "userPage/uesrUploadPhoto";
 			return"redirect:/user/uploadPhoto";
 		}
-		
 		return "userPage/uesrUploadPhoto";
 		
 	}

@@ -60,7 +60,7 @@
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
               <button id="send" type="submit" class="btn btn-success">保存</button>
-              <button type="button" class="btn btn-primary" id="back">返回</button>
+              <button id="back" type="button" class="btn btn-primary" >返回</button>
               <br/><br/>
             </div>
           </div>
@@ -72,3 +72,4 @@
 </div>
 <%@include file="../common/down.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/contactModify.js"></script>
+<script src="${pageContext.request.contextPath }/statics/localjs/top.js"></script>		

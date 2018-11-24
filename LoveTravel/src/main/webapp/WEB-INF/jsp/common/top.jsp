@@ -248,7 +248,8 @@ a.advisory {
 </head>
 <body>
 
-
+ <input type="hidden" id="path" name="path" value="${pageContext.request.contextPath }"/>
+ <input type="hidden" id="referer" name="referer" value="<%=request.getHeader("Referer")%>"/>
 <!-- 头部开始 -->
 <div class="i-top clearfix">
 	<div class="i-top-wrap">
@@ -309,7 +310,13 @@ a.advisory {
 	<div class="cental qiandao-top fix pos-rel">
 		<div class="gradient pos-abs"></div>
 		<div class="left qiandao-top-left rela">
-			<img src="${userSession.photoPath }" class="left qd-radius-img" title="" />
+		<c:choose>
+			<c:when test="${userSession.photoPath == null or userSession.photoPath ==''  }">
+				<img src="${pageContext.request.contextPath }/statics/images/img.jpg" class="left qd-radius-img" title="" />
+			</c:when>
+			<c:otherwise><img src="${userSession.photoPath }" class="left qd-radius-img" title="" /></c:otherwise>
+		</c:choose>
+			<%-- <img src="${userSession.photoPath }" class="left qd-radius-img" title="" /> --%>
 				<span class="qd-name left"> <strong class="ell">${userSession.username }</strong>
 				<i> ${userSession.rolename } </i></span>
 			
@@ -327,9 +334,14 @@ a.advisory {
 							data-default="没有什么能够阻挡，我对旅行的向往！">没有什么能够阻挡，我对旅行的向往！</span><span
 							class="autographEdit" id="autographEdit"></span>
 					</p>
-					<input type="text" maxlength="20" class="autographText"
-						id="autographText"> <span class="autographSave"
-						id="autographSave">保存</span>
+					
+					<div style="display:none" id="sign">
+						<input type="text" maxlength="20" class="autographText"
+							id="autographText"> <span class="autographSave"
+							id="autographSave">保存</span>
+					</div>
+					
+					
 				</div>
 				<p class="qd-top-qnd jf-box">
 					<span><a href="/my/social/care.shtml"><small>收藏1</small></a></span>
@@ -366,5 +378,6 @@ a.advisory {
 					<div class="keys" style="display: none" title="/my">
 						<span>31257</span>
 					</div>
+			
 </body>
 </html>
