@@ -72,7 +72,7 @@ public class CommentController extends BaseController {
 		
 		boolean flag = commentsService.insertSelective(comments);
 		if(flag){
-			//为什么在用重定向做跳转的时候就会出现问题，想不明白，数据库的字段已经添加成功,不明白路径
+			//为什么在用重定向做跳转的时候就会出现问题，不明白路径的位置，为什么不用加user
 			//return "redirect:user/userView"; 
 			return"redirect:commentsList";
 			

@@ -310,15 +310,14 @@ a.advisory {
 	<div class="cental qiandao-top fix pos-rel">
 		<div class="gradient pos-abs"></div>
 		<div class="left qiandao-top-left rela">
-		<c:choose>
-			<c:when test="${userSession.photoPath == null or userSession.photoPath ==''  }">
-				<img src="${pageContext.request.contextPath }/statics/images/img.jpg" class="left qd-radius-img" title="" />
-			</c:when>
-			<c:otherwise><img src="${userSession.photoPath }" class="left qd-radius-img" title="" /></c:otherwise>
-		</c:choose>
-			<%-- <img src="${userSession.photoPath }" class="left qd-radius-img" title="" /> --%>
-				<span class="qd-name left"> <strong class="ell">${userSession.username }</strong>
-				<i> ${userSession.rolename } </i></span>
+			<c:choose>
+				<c:when test="${userSession.photoPath == null or userSession.photoPath ==''  }">
+					<img src="${pageContext.request.contextPath }/statics/images/img.jpg" class="left qd-radius-img" title="" />
+				</c:when>
+				<c:otherwise><img src="${userSession.photoPath }" class="left qd-radius-img" title="" /></c:otherwise>
+			</c:choose>
+			<span class="qd-name left"> <strong class="ell">${userSession.username }</strong>
+			<i> ${userSession.rolename } </i></span>
 			
 			<div class="left qd-top-left f14">
 				<div class="center-jf fix">
@@ -361,7 +360,7 @@ a.advisory {
 		<ul class="yui3-u-1" id="qd-nav">
 			<li class="qd-usercare "><a href="${pageContext.request.contextPath }/user/contactList"><i></i>联系人</a></li>
 			<li class="qd-news "><a href="${pageContext.request.contextPath }/user/hotelOrderView"><i></i>我的订单</a></li>
-			<li class="qd-square "><a href="${pageContext.request.contextPath }/user/commentsList"><i></i>我的点评</a></li>
+			<li class="qd-square "><a href="${pageContext.request.contextPath }/user/commentsList?pageIndex=1"><i></i>我的点评</a></li>
 			<li class="qd-task "><a href="http://www.kgc.cn/my/task"><i></i>我的攻略</a></li>
 			<li class="qd-qnd "><a href="http://www.kgc.cn/my/wallet"><i></i>我的收藏</a></li>
 			<li class="qd-set "><a href="${pageContext.request.contextPath }/user/userView"><i></i>账户管理</a></li>

@@ -83,44 +83,43 @@
 										<td>${contactInfo.phone }</td>
 										
 									<c:choose>
-										<c:when test="${contactInfo.idCard == null }">
+										<c:when test="${contactInfo.idCard == null or contactInfo.idCard ==''}">
 											<td>未填写</td>
 										</c:when>
 										<c:otherwise><td>${contactInfo.idCard }</td></c:otherwise>
 									</c:choose>
 										
 									<c:choose>
-										<c:when test="${contactInfo.passport == null }">
+										<c:when test="${contactInfo.passport == null or contactInfo.passport == ''  }">
 											<td>未填写</td>
 										</c:when>
 										<c:otherwise><td>${contactInfo.passport }</td></c:otherwise>
 									</c:choose>
 									
 										
-										<td>
+									<td>
 										<div class="btn-group">
-                      <button type="button" class="btn btn-danger">点击操作</button>
-                      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu">
-                      
-                       
-                        <li><a  class="modifyContact" 
-											contactinfoid="${contactInfo.id }"
-											data-toggle="tooltip" data-placement="top" title="" data-original-title="修改联系人信息">修改</a></li>
-						<li><a  class="deleteContact" contactinfoid="${contactInfo.id }" contactname="${contactInfo.contactName }" data-toggle="tooltip" data-placement="top" title="" data-original-title="删除联系人信息">删除</a></li>
-                      </ul>
-                      
+						                   <button type="button" class="btn btn-danger">点击操作</button>
+						                   <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+	                        			   		<span class="caret"></span>
+	                        			   		<span class="sr-only">Toggle Dropdown</span>
+	                      				   </button>
+		                      				<ul class="dropdown-menu" role="menu">
+		                      
+			                       
+						                        <li><a  class="modifyContact" contactinfoid="${contactInfo.id }"
+														data-toggle="tooltip" data-placement="top" title="" data-original-title="修改联系人信息">修改</a></li>
+												<li><a  class="deleteContact" contactinfoid="${contactInfo.id }"
+													    contactname="${contactInfo.contactName }" data-toggle="tooltip" data-placement="top" title="" data-original-title="删除联系人信息">删除</a></li>
+					                      	</ul>
                     					</div>
-										</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
+			</div>
 				<div class="row">
 					<div class="col-sm-5">
 						<div class="dataTables_info" id="datatable-responsive_info"

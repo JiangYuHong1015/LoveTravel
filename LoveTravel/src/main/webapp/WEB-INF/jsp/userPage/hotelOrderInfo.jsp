@@ -47,8 +47,7 @@
 
 									 						</div>
 															 <div class="continue">
-																<a href="javascript:void(0);" class="catalog-btn btn_study f14"
-																	data-id="31853" data-job="31257" data-course="100">再次预定</a>
+																<button type="button" class="btn btn-primary" id="back">返&nbsp;&nbsp;&nbsp;&nbsp;回</button>
 															 </div>
 														</ul>
 													</div>

@@ -111,11 +111,6 @@ $(function(){
 	});
 	
 	
-	/*backBtn.on("click",function(){
-		
-		location.href= path+"/user/contactList";
-	})
-	*/
 	backBtn.on("click",function(){
 		//alert("modify: "+referer);
 		if(referer != undefined 

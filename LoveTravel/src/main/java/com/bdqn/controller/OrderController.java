@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONArray;
 import com.bdqn.pojo.Hotelorder;
+import com.bdqn.pojo.OrderStatus;
 import com.bdqn.pojo.User;
+import com.bdqn.service.orderStatus.OrderStatusService;
 import com.bdqn.service.hotelOrder.HotelOrderService;
 import com.bdqn.service.user.UserService;
 import com.bdqn.tools.Constants;
@@ -30,6 +32,8 @@ public class OrderController extends BaseController {
 	
 	@Resource
 	private UserService userService;
+	@Resource
+	private OrderStatusService orderStatusService;
 	
 	@Resource
 	private HotelOrderService hotelOrderService;
@@ -79,8 +83,11 @@ public class OrderController extends BaseController {
 		
 		
 		List<Hotelorder> hotelorderList = null ;
+		List<OrderStatus> orderStatusList = null;
 		try {
 			hotelorderList = hotelOrderService.getHotelOrderByUserId(userId, queryName, status, currentPageNo, pageSize);
+			orderStatusList = orderStatusService.getOrderStatusList();
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,6 +95,7 @@ public class OrderController extends BaseController {
 		model.addAttribute("pages", pages);
 		model.addAttribute("queryName", queryName);
 		model.addAttribute("status", status);
+		model.addAttribute("orderStatusList", orderStatusList);
 		
 		
 		return "userPage/hotelOrderView";

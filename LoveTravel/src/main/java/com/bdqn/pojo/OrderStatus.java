@@ -2,7 +2,7 @@ package com.bdqn.pojo;
 
 import java.util.Date;
 
-public class Orderstatus {
+public class OrderStatus {
     private Integer id;
 
     private String status;

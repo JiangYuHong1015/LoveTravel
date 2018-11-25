@@ -38,16 +38,20 @@
 		          
 				            <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
 				              <select name="status" id="status" class="form-control has-feedback-left">
-				              	<option value="">请选择</option>
-				              	<option value="1">已预定</option>
-				              	<option value="2">已取消</option>
-				              	<option value="3">已完成</option>
+				              	  <c:if test="${orderStatusList != null }">
+									   <option value="">请选择</option>
+									   <c:forEach var="orderStatus" items="${orderStatusList}">
+									   		<option <c:if test="${orderStatus.id == status }">selected="selected"</c:if>
+									   		value="${orderStatus.id }">${orderStatus.status }</option>
+									   </c:forEach>
+								</c:if>
 				              </select>
 				            </div>
 		         		  </div>
 					  </li>
-						<button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button>
+					  <button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button>
 					</ul>
+					
 				</form>
 				
 				
