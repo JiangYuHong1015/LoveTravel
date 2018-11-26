@@ -6,6 +6,26 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface LineMapper {
+	
+	/**
+	 * 获取起飞机场列表
+	 * @param leaveCity
+	 * @param arriveCity
+	 * @return
+	 * @throws Exception
+	 */
+	List<Line> getLeaveAirportList(@Param(value="leaveCity")String leaveCity,@Param(value="arriveCity")String arriveCity )throws Exception;
+	
+	/**
+	 * 获取降落机场列表
+	 * @param leaveCity
+	 * @param arriveCity
+	 * @return
+	 * @throws Exception
+	 */
+	List<Line> getArriveAirportList(@Param(value="leaveCity")String leaveCity,@Param(value="arriveCity")String arriveCity )throws Exception;
+	
+	
     int countByExample(LineExample example);
 
     int deleteByExample(LineExample example);

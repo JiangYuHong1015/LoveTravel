@@ -1,26 +1,25 @@
 
 
 $(".airCompany").on("click",function(){
-	var obj = $(this);
-	window.location.href="contactmodify?aid="+ obj.attr("aid");
-	$.ajax({
-		type:"GET",
-		url:"selectByAirCompany",
-		data:{aid:obj.attr("aid"),leaveCity:obj.attr("leaveCity"),arriveCity:obj.attr("arriveCity"),leaveDate:obj.attr("leaveDate")},
-		datatype:"json",
-		success:function(data){
-			if(data!= true){
-				alert("刷新失败");
-			}else{
-				
-			}
-		}
-		
-		
-	})
-	
-	
+	var airlineName = $(this).attr("airlineName");
+	$("#airlineName").val(airlineName);
 });
+
+$(".timeLable").on("click",function(){
+	var timeLable = $(this).attr("timeLable");
+	$("#timeLable").val(timeLable);
+})
+
+$(".arriveAirport").on("click",function(){
+	var arriveAirport = $(this).attr("arriveAirport");
+	$("#arriveAirport").val(arriveAirport);
+})
+
+$(".leaveAirport").on("click",function(){
+	var leaveAirport = $(this).attr("leaveAirport");
+	$("#leaveAirport").val(leaveAirport);
+})
+
 
 
 var path = $("#path").val();

@@ -1,5 +1,7 @@
 package com.bdqn.pojo;
 
+import javax.validation.constraints.Past;
+
 public class Flight {
     private String fid;
 
@@ -30,9 +32,33 @@ public class Flight {
     //航空公司名
     private String airlineName;
     
+    //时间标签，标识早晚，1表示从早到晚 ，2表示从晚到早排序
+    private String timeLable;
+    
+    //出发日期
+    private String leaveDate;
+    
     
 
    
+
+	
+
+	public String getLeaveDate() {
+		return leaveDate;
+	}
+
+	public void setLeaveDate(String leaveDate) {
+		this.leaveDate = leaveDate;
+	}
+
+	public String getTimeLable() {
+		return timeLable;
+	}
+
+	public void setTimeLable(String timeLable) {
+		this.timeLable = timeLable;
+	}
 
 	public String getAirlineName() {
 		return airlineName;

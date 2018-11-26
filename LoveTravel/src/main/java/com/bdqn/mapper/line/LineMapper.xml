@@ -9,6 +9,20 @@
     <result column="arrive_airport" property="arriveAirport" jdbcType="VARCHAR" />
     <result column="lineType" property="linetype" jdbcType="VARCHAR" />
   </resultMap>
+  
+  <select id="getLeaveAirportList" resultType="line">
+   	SELECT DISTINCT l.leaveAirport
+		FROM line l WHERE l.leaveCity=#{leaveCity} AND l.arriveCity=#{arriveCity}
+  </select>
+  
+  <select id="getArriveAirportList" resultType="line">
+   	SELECT DISTINCT l.arriveAirport
+		FROM line l WHERE l.leaveCity=#{leaveCity} AND l.arriveCity=#{arriveCity}
+  </select>
+  
+  
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

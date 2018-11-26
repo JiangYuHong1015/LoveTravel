@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bdqn.pojo.Airlines;
 import com.bdqn.pojo.Flight;
+import com.bdqn.pojo.Line;
 import com.bdqn.service.airlines.AirlinesService;
 import com.bdqn.service.flight.FlightService;
+import com.bdqn.service.line.LineService;
 
 @Controller
 public class FlyTicketController extends BaseController {
@@ -25,6 +27,8 @@ public class FlyTicketController extends BaseController {
 	private FlightService flightService;
 	@Resource
 	private AirlinesService airlinesService;
+	@Resource
+	private LineService lineService;
 	
 	@RequestMapping(value="/flyTicket")
 	public String flyTicketIndex(){
@@ -38,29 +42,36 @@ public class FlyTicketController extends BaseController {
 	
 	
 	@RequestMapping(value="/flyTicketList",method=RequestMethod.POST)
-	public String getFlyTicketList(@RequestParam String arriveCity,@RequestParam String leaveCity,
-			@RequestParam(value="airlineName",required=false)String airlineName,
+	public String getFlyTicketList(Flight flight,
 			@RequestParam(value="leaveDate",required=false)String leaveDate,Model model){
 		logger.debug("getFlyTicketList============>");
-		logger.debug("getFlyTicketList============>"+leaveDate);
-		logger.debug("getFlyTicketList============>"+arriveCity);
-		logger.debug("getFlyTicketList============>"+leaveCity);
-		logger.debug("getFlyTicketList============>"+airlineName);
+		logger.debug("getFlyTicketList============>leaveDate=="+leaveDate);
+
 		
+		//航班列表
 		List<Flight> flightList = null;
+		//航空公司列表
 		List<Airlines> airlinesList = null;
+		//起飞及落地机场列表
+		List<Line> leaveAirportStationList = null;
+		List<Line> arriveAirportStationList = null;
 		try {
-			flightList = flightService.getFlyTicketList(arriveCity, leaveCity,airlineName);
+			flightList = flightService.getFlyTicketList(flight);
 			airlinesList = airlinesService.getAllAirlines(); 
+			leaveAirportStationList = lineService.getLeaveAirportList(flight.getLeaveCity(), flight.getArriveCity());
+			arriveAirportStationList = lineService.getArriveAirportList(flight.getLeaveCity(), flight.getArriveCity());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		model.addAttribute("flightList", flightList);
 		model.addAttribute("airlinesList", airlinesList);
-		model.addAttribute("leaveCity", leaveCity);
-		model.addAttribute("arriveCity", arriveCity);
+		model.addAttribute("leaveCity", flight.getLeaveCity());
+		model.addAttribute("arriveCity", flight.getArriveCity());
 		model.addAttribute("leaveDate", leaveDate);
+		model.addAttribute("timeLable", flight.getTimeLable());
+		model.addAttribute("airlineName", flight.getAirlineName());
+		model.addAttribute("leaveAirportStationList", leaveAirportStationList);
+		model.addAttribute("arriveAirportStationList", arriveAirportStationList);
 		
 		// 624   <!-- 开始修改jsp -->
 		

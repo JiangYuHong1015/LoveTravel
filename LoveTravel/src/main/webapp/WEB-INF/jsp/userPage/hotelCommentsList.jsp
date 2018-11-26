@@ -10,12 +10,10 @@
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="yui3-u-1 center-ask fix">
 			<div class="yui3-u-1 center-ask fix">
-				<span class="cen-note-t left"> <a href="/my/jobOE"
-					class="yui3-u uc-ask-tab-on">酒店订单点评</a> <a
-					href="${pageContext.request.contextPath }/user/uploadPhoto"
-					class="yui3-u ">旅游订单点评</a> <a
-					href="${pageContext.request.contextPath }/user/uploadPhoto"
-					class="yui3-u ">机票订单点评</a>
+				<span class="cen-note-t left"> 
+					<a href="#"class="yui3-u uc-ask-tab-on">酒店订单点评</a> 
+					<a href="#"class="yui3-u ">旅游订单点评</a> 
+					<a href="#" class="yui3-u ">机票订单点评</a>
 				</span>
 			</div>
 		</div>
@@ -64,7 +62,7 @@
 																				<c:when test="${hotelComments.commentsimg == null }">
 																					<font color="blue">未上传图片</font>
 																				</c:when>
-																				<c:otherwise><img src="${hotelComments.commentsimg }" width="220" height="124" onerror="this.src='/img/video_default20160105.jpg'" /></c:otherwise>
+																				<c:otherwise><img src="${hotelComments.commentsimg }" width="220" height="124" alt="图片加载失败"/></c:otherwise>
 																			</c:choose>
 																			
 																		

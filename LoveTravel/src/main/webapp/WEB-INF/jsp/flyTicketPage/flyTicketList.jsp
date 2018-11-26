@@ -618,66 +618,68 @@
 		</div>
 		<div class="flight-right-con">
 		<form action="flyTicketList" method="post">
+			<input type="hidden" name="leaveCity"  value="${leaveCity }"/>
+			<input type="hidden" name="arriveCity"  value="${arriveCity }"/>
+			<input type="hidden" name="leaveDate"  value="${leaveDate }"/>
+			<input type="hidden" name="airlineName" id="airlineName" value=""/>
+			<input type="hidden" name="arriveAirport" id="arriveAirport" value=""/>
+			<input type="hidden" name="leaveAirport" id="leaveAirport" value=""/>
+			<input type="hidden" name="timeLable" id="timeLable" value="1"/>
+			
 			<div class="flight-sort clearfix">
 				<ul>
 					<li>
-					
-					<!-- 开始修改jsp -->
 						<div class="select_box">
-			            <span class="select_txt">航空公司</span><i class="arr icon-angle-down"></i>
-			              
-			              
+			            	<span class="select_txt">航空公司</span><i class="arr icon-angle-down"></i>
 			                <div class="option">
 			                	<c:forEach var="airlines" items="${airlinesList }">
-			                    	<a class="airCompany" aid="${airlines.aid }" leaveCity="${leaveCity }" arriveCity="${arriveCity }" leaveDate="${leaveDate }">${airlines.airlinename }</a>
+			                    	<a class="airCompany" airlineName="${airlines.airlinename }" >${airlines.airlinename }</a>
 			                   </c:forEach>
 			                </div>
-			                
-			                
 			            </div>
-			            
-			           
 					</li>
-					<li>
-					<input type="hidden" name="leaveCity"  value="${leaveCity }"/>
-					<input type="hidden" name="arriveCity"  value="${arriveCity }"/>
-					<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-		              <select name="airlineName" id="airlineName" class="form-control has-feedback-left" required="required">
-		              	<c:forEach var="airlines" items="${airlinesList }">
-		                	<option value="${airlines.airlinename }">${airlines.airlinename }</option>
-		                </c:forEach>
-		              	
-		              	
-		              </select>
-		            </div>
-					
-					</li>
-					
-					<li>
-					<div class="select_box">
-						<button>提交</button>
-					</div>
-					</li>
+
 					<li>
 						<div class="select_box">
 			                <span class="select_txt">起飞机场</span><i class="arr icon-angle-down"></i>
 			                <div class="option">
-			                    <a href="#">首 都</a>
-			                    <a href="#">南 苑</a>
+			                <c:if test="${leaveAirportStationList != null }">
+			                	<c:forEach var="airportStation" items="${leaveAirportStationList }">
+			                    	<a class="leaveAirport" leaveAirport="${airportStation.leaveAirport }" >${airportStation.leaveAirport }</a>
+			                   </c:forEach>
+			                </c:if>
+			                </div>
+			            </div>
+					</li>
+					
+					<li>
+						<div class="select_box">
+			                <span class="select_txt">落地机场</span><i class="arr icon-angle-down"></i>
+			                <div class="option">
+			                <c:if test="${arriveAirportStationList != null }">
+			                	<c:forEach var="arriveAirportStation" items="${arriveAirportStationList }">
+			                		<a class="arriveAirport" arriveAirport="${arriveAirportStation.arriveAirport }">${arriveAirportStation.arriveAirport }</a>
+			                	</c:forEach>
+			                </c:if>
+			                </div>
+			            </div>
+					</li>
+					
+					<li>
+						<div class="select_box">
+			                <span class="select_txt">起飞时间</span><i class="arr icon-angle-down"></i>
+			                <div class="option">
+			                    <a class="timeLable" timeLable="1">早-->晚</a>
+			                    <a class="timeLable" timeLable="2">晚-->早</a>
 			                </div>
 			            </div>
 					</li>
 					<li>
 						<div class="select_box">
-			                <span class="select_txt">起飞时段</span><i class="arr icon-angle-down"></i>
-			                <div class="option">
-			                    <a href="#">6-12点</a>
-			                    <a href="#">12-18点</a>
-			                    <a href="#">18-24点</a>
-			                </div>
+			                <span class="select_txt"><button type="submit">提交</button></span>
+			                
 			            </div>
 					</li>
-					
 				</ul>
 			</div>
 		</form>	
@@ -845,6 +847,7 @@
 
 <script src="${pageContext.request.contextPath }/statics/js/common.js"></script>
 <script src="${pageContext.request.contextPath }/statics/js/flyTicketList.js"></script>
+<script src="${pageContext.request.contextPath }/statics/localjs/fly.js"></script>
 
 
 </body>

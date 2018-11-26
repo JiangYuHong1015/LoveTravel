@@ -8,9 +8,7 @@ import org.apache.ibatis.annotations.Param;
 public interface FlightMapper {
 		
 	//根据出发地和目的地获取航班信息
-	List<Flight> getFlyTicketList(@Param(value="arriveCity") String arriveCity ,
-								  @Param(value="leaveCity")String leaveCity,
-								  @Param(value = "AirlineName")String airlineName) throws Exception;
+	List<Flight> getFlyTicketList(Flight flight) throws Exception;
 	
     int countByExample(FlightExample example);
 

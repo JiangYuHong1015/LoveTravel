@@ -26,20 +26,21 @@
 				WHERE f.LID=c.lineID
 				AND b.airlineId = f.AID) AS e
 	where 1=1
-	<if test="AirlineName != null and AirlineName != '' ">
-		and e.AirlineName=#{AirlineName}
+	<if test="leaveAirport != null and leaveAirport != '' ">
+		and e.leaveAirport=#{leaveAirport}
 	</if>
-	ORDER BY e.timeid 
-  
-<!--   
-  	SELECT f.`FID`,f.`leaveTime`,f.`arriveTime`,f.`price`,f.`AID`,f.LID,f.totalTime,f.`price`
-		FROM flight f WHERE f.`LID`=
-			(SELECT l.`LID`
-				FROM line l
-					WHERE l.`arriveCity`=#{arriveCity}
-						AND l.`leaveCity`=#{leaveCity}) -->
-  
-  
+	<if test="arriveAirport != null and arriveAirport != '' ">
+		and e.arriveAirport=#{arriveAirport}
+	</if>
+	<if test="airlineName != null and airlineName != '' ">
+		and e.airlineName=#{airlineName}
+	</if>
+	<if test="timeLable == 2">
+		ORDER BY e.timeid DESC
+	</if>
+	<if test="timeLable == 1">
+		ORDER BY e.timeid 
+	</if>
   </select>
   
   

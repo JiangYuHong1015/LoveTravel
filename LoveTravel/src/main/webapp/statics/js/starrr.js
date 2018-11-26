@@ -1,6 +1,7 @@
 var slice = [].slice;
 
 (function($, window) {
+	alert("aaa");
   var Starrr;
   window.Starrr = Starrr = (function() {
     Starrr.prototype.defaults = {

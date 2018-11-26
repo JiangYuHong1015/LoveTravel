@@ -16,10 +16,10 @@ public class FlightServiceImpl implements FlightService {
 	private FlightMapper flightMapper;
 
 	@Override
-	public List<Flight> getFlyTicketList(String arriveCity, String leaveCity,String airlineName)
+	public List<Flight> getFlyTicketList(Flight flight)
 			throws Exception {
 		
-		List<Flight> flightList = flightMapper.getFlyTicketList(arriveCity, leaveCity,airlineName);
+		List<Flight> flightList = flightMapper.getFlyTicketList(flight);
 		
 		return flightList;
 		

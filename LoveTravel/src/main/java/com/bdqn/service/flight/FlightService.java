@@ -9,6 +9,8 @@ package com.bdqn.service.flight;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.bdqn.pojo.Flight;
 
 public interface FlightService{
@@ -20,7 +22,7 @@ public interface FlightService{
 	 * @return
 	 * @throws Exception
 	 */
-	List<Flight> getFlyTicketList(String arriveCity,String leaveCity,String airlineName) throws Exception;
+	List<Flight> getFlyTicketList(Flight flight) throws Exception;
 	
 	
 }
