@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -684,6 +685,7 @@
 			</div>
 		</form>	
 
+		<!-- <form action="orderFlyTicket" method="post"> -->
 			<div class="sort-line clearfix">
 				<ul>
 					<li class="sort-info">航班信息</li>
@@ -716,7 +718,7 @@
 								<p>${flightListInfo.arriveAirport }</p>
 							</span>
 							<span class="sort-stage-list">
-								<em>准点率</em><em>56%</em>
+								<em>准点率</em><em>88%</em>
 							</span>
 							<span class="sort-price-list">
 								<i>￥</i>
@@ -737,22 +739,27 @@
 										<span>6.2折</span>
 									</div>
 									<div class="detail-wrap-price">
-										<span>￥</span><i>1050</i>
+										<span>￥</span><i><c:out value="${fn:substring((flightListInfo.price/flightListInfo.discount)*0.62,0,fn:indexOf(flightListInfo.price/flightListInfo.discount, '.'))}"/></i>
 									</div>
-									<button>选定</button>
+									<button class="buttonClass" type="button"  flyID="${flightListInfo.fid }" 
+									arriveTime="${flightListInfo.arriveTime }" leaveTime="${flightListInfo.leaveTime }" arriveAirport="${flightListInfo.arriveAirport }" 
+									leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }">选定</button>
 								</div>
 
 								<div class="detail-wrap">
 									<div class="detail-wrap-info">
-										行程单 <span>|</span> <i>退改￥362起</i>
+										行程单 <span>|</span> <i>退改￥462起</i>
 									</div>
 									<div class="detail-wrap-sale">
 										<span>5.6折</span>
 									</div>
 									<div class="detail-wrap-price">
-										<span>￥</span><i>625</i>
+										<span>￥</span><i><c:out value="${fn:substring((flightListInfo.price/flightListInfo.discount)*0.56,0,fn:indexOf(flightListInfo.price/flightListInfo.discount, '.'))}"/></i>
+			
 									</div>
-									<button>选定</button>
+									<button class="buttonClass" type="button"  flyID="${flightListInfo.fid }" 
+									arriveTime="${flightListInfo.arriveTime }" leaveTime="${flightListInfo.leaveTime }" arriveAirport="${flightListInfo.arriveAirport }" 
+									leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }">选定</button>
 								</div>
 								
 								<div class="detail-wrap detail-wrap-fullprice">
@@ -763,9 +770,12 @@
 										<span>9.3折</span>
 									</div>
 									<div class="detail-wrap-price">
-										<span>￥</span><i>769</i>
+										<span>￥</span><i><c:out value="${fn:substring((flightListInfo.price/flightListInfo.discount)*0.93,0,fn:indexOf(flightListInfo.price/flightListInfo.discount, '.'))}"/></i>
+						
 									</div>
-									<button>选定</button>
+									<button class="buttonClass" type="button"  flyID="${flightListInfo.fid }" 
+									arriveTime="${flightListInfo.arriveTime }" leaveTime="${flightListInfo.leaveTime }" arriveAirport="${flightListInfo.arriveAirport }" 
+									leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }">选定</button>
 								</div>
 
 								<div class="detail-wrap detail-wrap-fullprice detail-wrap-online">
@@ -776,21 +786,22 @@
 										<span>全价</span>
 									</div>
 									<div class="detail-wrap-price">
-										<span>￥</span><i>956</i>
+										<span>￥</span><i><c:out value="${fn:substring(flightListInfo.price/flightListInfo.discount,0,fn:indexOf(flightListInfo.price/flightListInfo.discount, '.'))}"/></i>
+						
 									</div>
-									<button>选定</button>
+									<button class="buttonClass" type="button"  flyID="${flightListInfo.fid }" 
+									arriveTime="${flightListInfo.arriveTime }" leaveTime="${flightListInfo.leaveTime }" arriveAirport="${flightListInfo.arriveAirport }" 
+									leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }">选定</button>
 								</div>
 
 							</div>
-
 						</div>
 					</li>
-					
 					</c:forEach>
-					
-				
 				</ul>
 			</div>
+		<!-- </form> -->
+		
 
 		</div>
 
@@ -840,7 +851,6 @@
 
 <%@include file="../common/down.jsp"%>
 
-
 <script src="${pageContext.request.contextPath }/statics/lib/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/statics/lib/cityselect.js"></script>
 <script src="${pageContext.request.contextPath }/statics/lib/My97DatePicker/WdatePicker.js"></script>
@@ -849,6 +859,18 @@
 <script src="${pageContext.request.contextPath }/statics/js/flyTicketList.js"></script>
 <script src="${pageContext.request.contextPath }/statics/localjs/fly.js"></script>
 
+<script type="text/javascript">
+
+$(".buttonClass").on("click",function(){
+	alert("aa");
+	var a= $(this).attr("flyID");
+	alert(a);
+	window.location.href="makeFlyOrder";
+})
+
+
+
+</script>
 
 </body>
 </html>

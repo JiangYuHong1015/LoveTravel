@@ -8,6 +8,7 @@ $(".airCompany").on("click",function(){
 $(".timeLable").on("click",function(){
 	var timeLable = $(this).attr("timeLable");
 	$("#timeLable").val(timeLable);
+	
 })
 
 $(".arriveAirport").on("click",function(){
@@ -22,30 +23,9 @@ $(".leaveAirport").on("click",function(){
 
 
 
-var path = $("#path").val();
-/*
-$(".viewContact").on("click",function(){
-	var obj = $(this);
-	$.ajax({
-		type : "GET",
-		url : "contactView",
-		data:{id:obj.attr("contactinfoid")},
-		datatype : "json",
-		success : function(data){
-			if("faild" == data){
-				alert("操作超时，请稍后再试");
-			}else{
-				$("#contactName").val(data.contactName);
-				$("#phone").val(data.phone);
-				$("#passport").val(data.passport);
-				$("#idCard").val(data.idCard);
-				$("#createDate").val(data.createDate);
-			}
-		}
-	})
-	
-})*/
 
+
+var path = $("#path").val();
 
 $(".deleteContact").on("click",function(){
 	var obj = $(this);

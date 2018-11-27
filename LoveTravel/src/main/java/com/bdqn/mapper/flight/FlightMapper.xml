@@ -15,7 +15,7 @@
   
   <select id="getFlyTicketList" resultType="flight">
   
- 	SELECT e.* FROM
+ 	SELECT e.*,p.* FROM
 		(SELECT * FROM flight f ,
 
 			(SELECT l.arriveAirport,l.arriveCity,l.leaveAirport,l.lineType,l.LID AS lineID FROM line l
@@ -24,8 +24,16 @@
 			(SELECT a.AID AS airlineId ,a.AirlineName FROM airlines a ) AS b
 
 				WHERE f.LID=c.lineID
-				AND b.airlineId = f.AID) AS e
-	where 1=1
+				AND b.airlineId = f.AID) AS e,
+				price as p
+	where P.flightID =e.fid
+	
+	
+	<if test="dateNo != null and dateNo != '' ">
+		and p.dateNo = #{dateNo}
+	</if>
+	
+	
 	<if test="leaveAirport != null and leaveAirport != '' ">
 		and e.leaveAirport=#{leaveAirport}
 	</if>

@@ -9,9 +9,17 @@ public class Price {
 
     private Integer price;
 
-    private String discount;
+    private double discount;
 
-    public Integer getId() {
+    public double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -43,11 +51,5 @@ public class Price {
         this.price = price;
     }
 
-    public String getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(String discount) {
-        this.discount = discount == null ? null : discount.trim();
-    }
+  
 }

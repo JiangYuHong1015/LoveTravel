@@ -47,6 +47,9 @@ public class FlyTicketController extends BaseController {
 		logger.debug("getFlyTicketList============>");
 		logger.debug("getFlyTicketList============>leaveDate=="+leaveDate);
 
+		System.err.println(leaveDate);
+		String dateNo = leaveDate.substring(8,10);
+		flight.setDateNo(dateNo);
 		
 		//航班列表
 		List<Flight> flightList = null;
@@ -73,11 +76,13 @@ public class FlyTicketController extends BaseController {
 		model.addAttribute("leaveAirportStationList", leaveAirportStationList);
 		model.addAttribute("arriveAirportStationList", arriveAirportStationList);
 		
-		// 624   <!-- 开始修改jsp -->
-		
-		
 		return "flyTicketPage/flyTicketList";
 		
+	}
+	
+	@RequestMapping(value="/makeFlyOrder")
+	public String makeOrder(){
+		return "flyTicketPage/403";
 	}
 	
 

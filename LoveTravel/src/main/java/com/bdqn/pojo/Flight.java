@@ -1,6 +1,5 @@
 package com.bdqn.pojo;
 
-import javax.validation.constraints.Past;
 
 public class Flight {
     private String fid;
@@ -38,11 +37,31 @@ public class Flight {
     //出发日期
     private String leaveDate;
     
+    //日期编号
+    private String dateNo;
     
+    //折扣
+    private double discount;
 
    
 
 	
+
+	public double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+
+	public String getDateNo() {
+		return dateNo;
+	}
+
+	public void setDateNo(String dateNo) {
+		this.dateNo = dateNo;
+	}
 
 	public String getLeaveDate() {
 		return leaveDate;
