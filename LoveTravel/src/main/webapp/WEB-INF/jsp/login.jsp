@@ -207,6 +207,6 @@
 </script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jquery-1.8.3.min.js"></script>
-<script src="${pageContext.request.contextPath }/statics/js/login.js"></script>
+<script src="${pageContext.request.contextPath }/statics/localjs/login.js"></script>
 </body>
 </html>

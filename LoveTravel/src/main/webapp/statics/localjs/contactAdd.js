@@ -98,7 +98,6 @@ $(function(){
 	
 	
 	backBtn.on("click",function(){
-		//alert("modify: "+referer);
 		if(referer != undefined 
 			&& null != referer 
 			&& "" != referer

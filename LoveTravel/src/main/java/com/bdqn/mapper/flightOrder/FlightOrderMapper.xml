@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.mapper.flightOrder.FlightOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.bdqn.pojo.FlightOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fid" property="fid" jdbcType="VARCHAR" />
+    <result column="leaveDate" property="leavedate" jdbcType="VARCHAR" />
+    <result column="leaveCity" property="leavecity" jdbcType="VARCHAR" />
+    <result column="arriveCity" property="arrivecity" jdbcType="VARCHAR" />
+    <result column="leaveTime" property="leavetime" jdbcType="VARCHAR" />
+    <result column="arriveTime" property="arrivetime" jdbcType="VARCHAR" />
+    <result column="leaveAirport" property="leaveairport" jdbcType="VARCHAR" />
+    <result column="arriveAirport" property="arriveairport" jdbcType="VARCHAR" />
+    <result column="contactName" property="contactname" jdbcType="VARCHAR" />
+    <result column="cardNo" property="cardno" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  
+  
+  
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, fid, leaveDate, leaveCity, arriveCity, leaveTime, arriveTime, leaveAirport, arriveAirport, 
+    contactName, cardNo, phone
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bdqn.pojo.FlightOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from flightorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from flightorder
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from flightorder
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bdqn.pojo.FlightOrderExample" >
+    delete from flightorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bdqn.pojo.FlightOrder" >
+    insert into flightorder (id, fid, leaveDate, 
+      leaveCity, arriveCity, leaveTime, 
+      arriveTime, leaveAirport, arriveAirport, 
+      contactName, cardNo, phone
+      )
+    values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=VARCHAR}, #{leavedate,jdbcType=VARCHAR}, 
+      #{leavecity,jdbcType=VARCHAR}, #{arrivecity,jdbcType=VARCHAR}, #{leavetime,jdbcType=VARCHAR}, 
+      #{arrivetime,jdbcType=VARCHAR}, #{leaveairport,jdbcType=VARCHAR}, #{arriveairport,jdbcType=VARCHAR}, 
+      #{contactname,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bdqn.pojo.FlightOrder" >
+    insert into flightorder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="leavedate != null" >
+        leaveDate,
+      </if>
+      <if test="leavecity != null" >
+        leaveCity,
+      </if>
+      <if test="arrivecity != null" >
+        arriveCity,
+      </if>
+      <if test="leavetime != null" >
+        leaveTime,
+      </if>
+      <if test="arrivetime != null" >
+        arriveTime,
+      </if>
+      <if test="leaveairport != null" >
+        leaveAirport,
+      </if>
+      <if test="arriveairport != null" >
+        arriveAirport,
+      </if>
+      <if test="contactname != null" >
+        contactName,
+      </if>
+      <if test="cardno != null" >
+        cardNo,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="leavedate != null" >
+        #{leavedate,jdbcType=VARCHAR},
+      </if>
+      <if test="leavecity != null" >
+        #{leavecity,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivecity != null" >
+        #{arrivecity,jdbcType=VARCHAR},
+      </if>
+      <if test="leavetime != null" >
+        #{leavetime,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivetime != null" >
+        #{arrivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveairport != null" >
+        #{leaveairport,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveairport != null" >
+        #{arriveairport,jdbcType=VARCHAR},
+      </if>
+      <if test="contactname != null" >
+        #{contactname,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null" >
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bdqn.pojo.FlightOrderExample" resultType="java.lang.Integer" >
+    select count(*) from flightorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update flightorder
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.fid != null" >
+        fid = #{record.fid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leavedate != null" >
+        leaveDate = #{record.leavedate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leavecity != null" >
+        leaveCity = #{record.leavecity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrivecity != null" >
+        arriveCity = #{record.arrivecity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leavetime != null" >
+        leaveTime = #{record.leavetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arrivetime != null" >
+        arriveTime = #{record.arrivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leaveairport != null" >
+        leaveAirport = #{record.leaveairport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arriveairport != null" >
+        arriveAirport = #{record.arriveairport,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactname != null" >
+        contactName = #{record.contactname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardno != null" >
+        cardNo = #{record.cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update flightorder
+    set id = #{record.id,jdbcType=INTEGER},
+      fid = #{record.fid,jdbcType=VARCHAR},
+      leaveDate = #{record.leavedate,jdbcType=VARCHAR},
+      leaveCity = #{record.leavecity,jdbcType=VARCHAR},
+      arriveCity = #{record.arrivecity,jdbcType=VARCHAR},
+      leaveTime = #{record.leavetime,jdbcType=VARCHAR},
+      arriveTime = #{record.arrivetime,jdbcType=VARCHAR},
+      leaveAirport = #{record.leaveairport,jdbcType=VARCHAR},
+      arriveAirport = #{record.arriveairport,jdbcType=VARCHAR},
+      contactName = #{record.contactname,jdbcType=VARCHAR},
+      cardNo = #{record.cardno,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bdqn.pojo.FlightOrder" >
+    update flightorder
+    <set >
+      <if test="fid != null" >
+        fid = #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="leavedate != null" >
+        leaveDate = #{leavedate,jdbcType=VARCHAR},
+      </if>
+      <if test="leavecity != null" >
+        leaveCity = #{leavecity,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivecity != null" >
+        arriveCity = #{arrivecity,jdbcType=VARCHAR},
+      </if>
+      <if test="leavetime != null" >
+        leaveTime = #{leavetime,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivetime != null" >
+        arriveTime = #{arrivetime,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveairport != null" >
+        leaveAirport = #{leaveairport,jdbcType=VARCHAR},
+      </if>
+      <if test="arriveairport != null" >
+        arriveAirport = #{arriveairport,jdbcType=VARCHAR},
+      </if>
+      <if test="contactname != null" >
+        contactName = #{contactname,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null" >
+        cardNo = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bdqn.pojo.FlightOrder" >
+    update flightorder
+    set fid = #{fid,jdbcType=VARCHAR},
+      leaveDate = #{leavedate,jdbcType=VARCHAR},
+      leaveCity = #{leavecity,jdbcType=VARCHAR},
+      arriveCity = #{arrivecity,jdbcType=VARCHAR},
+      leaveTime = #{leavetime,jdbcType=VARCHAR},
+      arriveTime = #{arrivetime,jdbcType=VARCHAR},
+      leaveAirport = #{leaveairport,jdbcType=VARCHAR},
+      arriveAirport = #{arriveairport,jdbcType=VARCHAR},
+      contactName = #{contactname,jdbcType=VARCHAR},
+      cardNo = #{cardno,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

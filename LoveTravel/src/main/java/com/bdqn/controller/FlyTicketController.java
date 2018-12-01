@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bdqn.pojo.Airlines;
 import com.bdqn.pojo.Flight;
+import com.bdqn.pojo.FlightOrder;
 import com.bdqn.pojo.Line;
+import com.bdqn.pojo.TicketPromotion;
 import com.bdqn.service.airlines.AirlinesService;
 import com.bdqn.service.flight.FlightService;
 import com.bdqn.service.line.LineService;
+import com.bdqn.service.ticketPromotion.TicketPromotionService;
 
 @Controller
 public class FlyTicketController extends BaseController {
@@ -30,6 +33,9 @@ public class FlyTicketController extends BaseController {
 	@Resource
 	private LineService lineService;
 	
+	@Resource
+	private TicketPromotionService ticketPromotionService;
+	
 	@RequestMapping(value="/flyTicket")
 	public String flyTicketIndex(){
 		
@@ -41,7 +47,7 @@ public class FlyTicketController extends BaseController {
 	}
 	
 	
-	@RequestMapping(value="/flyTicketList",method=RequestMethod.POST)
+	@RequestMapping(value="/flyTicketList"/*,method=RequestMethod.POST*/)
 	public String getFlyTicketList(Flight flight,
 			@RequestParam(value="leaveDate",required=false)String leaveDate,Model model){
 		logger.debug("getFlyTicketList============>");
@@ -58,7 +64,14 @@ public class FlyTicketController extends BaseController {
 		//起飞及落地机场列表
 		List<Line> leaveAirportStationList = null;
 		List<Line> arriveAirportStationList = null;
+
+		//改动开始
+		
+		List<TicketPromotion> ticketPromotionList = null;
+		
+		
 		try {
+			ticketPromotionList = ticketPromotionService.getPromotionList();
 			flightList = flightService.getFlyTicketList(flight);
 			airlinesList = airlinesService.getAllAirlines(); 
 			leaveAirportStationList = lineService.getLeaveAirportList(flight.getLeaveCity(), flight.getArriveCity());
@@ -76,13 +89,41 @@ public class FlyTicketController extends BaseController {
 		model.addAttribute("leaveAirportStationList", leaveAirportStationList);
 		model.addAttribute("arriveAirportStationList", arriveAirportStationList);
 		
+		//改动
+		model.addAttribute("ticketPromotionList", ticketPromotionList);
+		
+		/*HashMap<List, List> mapList = new HashMap<List, List>();
+		mapList.put(flightList , ticketPromotionList);
+		
+		model.addAttribute("mapList", mapList);*/
+		
 		return "flyTicketPage/flyTicketList";
 		
 	}
 	
-	@RequestMapping(value="/makeFlyOrder")
-	public String makeOrder(){
-		return "flyTicketPage/403";
+	@RequestMapping(value="user/makeFlyOrder")
+	public String makeOrder(Flight flight,Model model){
+		model.addAttribute("flight", flight);
+		return "flyTicketPage/orderTicket";
+	}
+	
+	
+	@RequestMapping(value="user/payForTicket")
+	public String payForTicket(FlightOrder flightOrder,Model model){
+		model.addAttribute("flightOrder", flightOrder);
+		return "flyTicketPage/payForTicket";
+		
+	}
+	
+	@RequestMapping(value="user/success")
+	public String success(FlightOrder flightOrder,Model model){
+		
+		
+		model.addAttribute("flightOrder", flightOrder);
+		//需要加入订单信息
+		//需要修改剩余座位数
+		return "flyTicketPage/orderSuccess";
+		
 	}
 	
 

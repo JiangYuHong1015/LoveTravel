@@ -103,6 +103,39 @@ public class UserController {
 		return JSONArray.toJSONString(resultMap);
 	}
 
+
+	/**
+	 * 用户在订票页面的登录方法
+	 * @param param
+	 * @param password
+	 * @return
+	 */
+	@RequestMapping(value="/doTicketLogin",method=RequestMethod.POST)
+	@ResponseBody
+	public String doTicketLogin(@RequestParam String username,@RequestParam String password,HttpSession session,HttpServletRequest request){
+		
+		logger.debug("doTicketLogin================");
+		HashMap<String, String> resultMap = new HashMap<String, String>();
+		
+		
+		try {
+			User user = userService.doLogin(username, password);
+			if(null != user){
+				//将user放入session
+				session.setAttribute(Constants.USER_SESSION, user);
+				
+				resultMap.put("result", "true");
+			}else{
+				resultMap.put("result", "false");
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return JSONArray.toJSONString(resultMap);
+	}
+
 	
 	/**
 	 * 退出登录
@@ -310,7 +343,8 @@ public class UserController {
 		return "userPage/uesrUploadPhoto";
 		
 	}
-
+	
+	
 	
 	
 	
