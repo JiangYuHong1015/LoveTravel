@@ -10,51 +10,28 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="dns-prefetch" href="http://assets.kgc.cn">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/statics/css/reset.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/statics/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/statics/css/common.css">
-<!-- Bootstrap -->
-<link
-	href="${pageContext.request.contextPath }/statics/css/bootstrap.min.css"
-	rel="stylesheet">
-<!-- Font Awesome -->
-<link
-	href="${pageContext.request.contextPath }/statics/css/font-awesome.min.css"
-	rel="stylesheet">
-<!-- NProgress -->
-<link
-	href="${pageContext.request.contextPath }/statics/css/nprogress.css"
-	rel="stylesheet">
-<!-- iCheck -->
-<link href="${pageContext.request.contextPath }/statics/css/green.css"
-	rel="stylesheet">
-<!-- bootstrap-progressbar -->
-<link
-	href="${pageContext.request.contextPath }/statics/css/bootstrap-progressbar-3.3.4.min.css"
-	rel="stylesheet">
-<!-- JQVMap -->
-<link
-	href="${pageContext.request.contextPath }/statics/css/jqvmap.min.css"
-	rel="stylesheet" />
-<link
-	href="${pageContext.request.contextPath }/statics/css/dropzone.min.css"
-	rel="stylesheet">
-<!-- Custom Theme Style -->
-<link
-	href="${pageContext.request.contextPath }/statics/css/custom.min.css"
-	rel="stylesheet">
+<title>我的个人中心</title>
+<meta property="qc:admins" content="10704774276373636" />
+<meta name="alexaVerifyID" content="IFh-ueSxp2_9zOgvI3ieGG9mv0I" />
+<!-- <meta property="wb:webmaster" content="77793812b9f0d5d4" /> -->
+<meta name="baidu-site-verification" content="spSfapQ1a6" />
 
-<!-- add localcss 2016-8-18 -->
-<link
-	href='${pageContext.request.contextPath }/statics/localcss/contactsadd.css'
-	rel='stylesheet'>
-<link
-	href='${pageContext.request.contextPath }/statics/localcss/orderInfoList.css'
-	rel='stylesheet'>
+
+<link rel="stylesheet"  href="${pageContext.request.contextPath }/statics/css/reset.css">
+<link rel="stylesheet"	href="${pageContext.request.contextPath }/statics/css/font-awesome.min.css">
+<link rel="stylesheet"  href="${pageContext.request.contextPath }/statics/css/common.css">
+<link rel="stylesheet"	href="${pageContext.request.contextPath }/statics/css/bootstrap.min.css">
+<link rel="stylesheet"	href="${pageContext.request.contextPath }/statics/css/font-awesome.min.css" >
+<link rel="stylesheet"	href="${pageContext.request.contextPath }/statics/css/nprogress.css">
+<link rel="stylesheet"  href="${pageContext.request.contextPath }/statics/css/green.css">
+<link rel="stylesheet"	href="${pageContext.request.contextPath }/statics/css/bootstrap-progressbar-3.3.4.min.css">
+<link rel="stylesheet" 	href="${pageContext.request.contextPath }/statics/css/jqvmap.min.css"/>
+<link rel="stylesheet"	href="${pageContext.request.contextPath }/statics/css/dropzone.min.css">
+<link rel="stylesheet"  href="${pageContext.request.contextPath }/statics/css/custom.min.css">
+<link rel='stylesheet'  href='${pageContext.request.contextPath }/statics/localcss/contactsadd.css'>
+<link rel='stylesheet'	href='${pageContext.request.contextPath }/statics/localcss/orderInfoList.css'>
+
+<link rel="dns-prefetch" href="http://assets.kgc.cn">
 <link rel="stylesheet" type="text/css"
 	href="http://assets.kgc.cn/ff7f069b/css/common-min.www.kgc.css?v=9edd4fc" />
 <link rel="stylesheet" type="text/css"
@@ -113,11 +90,7 @@
 	var privateUrl = "http://www.kgc.cn";
 	/*]]>*/
 </script>
-<title>我的个人中心</title>
-<meta property="qc:admins" content="10704774276373636" />
-<meta name="alexaVerifyID" content="IFh-ueSxp2_9zOgvI3ieGG9mv0I" />
-<meta property="wb:webmaster" content="77793812b9f0d5d4" />
-<meta name="baidu-site-verification" content="spSfapQ1a6" />
+
 <style type="text/css">
 .qd-nav li span {
 	display: none;
@@ -290,7 +263,7 @@ a.advisory {
 						<div class="i-top-app i-top-app-wei">
 							<div id="topClass">
 								<a href="${pageContext.request.contextPath }/user/userView">酒店预定</a><br/>
-								<a href="${pageContext.request.contextPath }/user/userView">机票优惠</a><br/>
+								<a href="${pageContext.request.contextPath }/flyTicket">机票优惠</a><br/>
 								<a href="${pageContext.request.contextPath }/user/userView">最新攻略</a><br/>
 								<a href="${pageContext.request.contextPath }/doLogut">退出登陆</a>
 							</div>

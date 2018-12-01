@@ -2,7 +2,11 @@ package com.bdqn.mapper.flight;
 
 import com.bdqn.pojo.Flight;
 import com.bdqn.pojo.FlightExample;
+
 import java.util.List;
+
+import javax.validation.constraints.Past;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface FlightMapper {
@@ -10,7 +14,12 @@ public interface FlightMapper {
 	//根据出发地和目的地获取航班信息
 	List<Flight> getFlyTicketList(Flight flight) throws Exception;
 	
-    int countByExample(FlightExample example);
+	//更新剩余座位数
+	int updateSeatsNum(@Param(value="seatsLeave")int seatsLeave,@Param(value="fid")String fid) throws Exception;	
+   
+	
+	
+	int countByExample(FlightExample example);
 
     int deleteByExample(FlightExample example);
 

@@ -25,4 +25,20 @@ public class FlightServiceImpl implements FlightService {
 		
 	}
 
+	@Override
+	public boolean updateSeatsNum(int seatsLeave, String fid)  {
+		boolean flag = false;
+		
+		int num = seatsLeave - 1;
+		
+		try {
+			if(flightMapper.updateSeatsNum(num, fid) > 0){
+				flag = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
 }

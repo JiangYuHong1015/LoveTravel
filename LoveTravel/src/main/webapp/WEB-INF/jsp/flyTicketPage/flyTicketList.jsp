@@ -64,6 +64,18 @@ display: none;
 						<p>手机扫一扫，享受专属福利</p>
 					</div>
 				</li>
+				 <li class="i-top-phone i-top-wei">
+				 	<img alt="" src="${pageContext.request.contextPath }/statics/images/img.jpg" width="30" height="30">
+                  	<span class="tx-top"></span>
+					<div class="i-top-app i-top-app-wei">
+						<div id="topClass">
+							<a href="${pageContext.request.contextPath }/user/userView">酒店预定</a><br/>
+							<a href="${pageContext.request.contextPath }/flyTicket">机票优惠</a><br/>
+							<a href="${pageContext.request.contextPath }/user/userView">最新攻略</a><br/>
+							<a href="${pageContext.request.contextPath }/doLogut">退出登陆</a>
+						</div>
+					</div>
+				</li> 
 			</ul>
 		</div>
 	</div>
@@ -715,8 +727,18 @@ display: none;
 			<input type="hidden" name="arriveCity"  value="${arriveCity }"/>
 			<input type="hidden" name="leaveDate"  value="${leaveDate }"/>
 			
+			<input type="hidden" name="fid" id="fids" value=""/>
+			<input type="hidden" name="airlineName" id="airlineNames" value=""/>
+			<input type="hidden" name="leaveTime" id="leaveTimes" value=""/>
+			<input type="hidden" name="leaveAirport" id="leaveAirports" value=""/>
+			<input type="hidden" name="price" id="price" value=""/>
+			<input type="hidden" name="arriveTime" id="arriveTimes" value=""/>
+			<input type="hidden" name="arriveAirport" id="arriveAirports" value=""/>
+			<input type="hidden" name="seatsLeave" id="seatsLeave" value=""/>
 			
-			<input type="hidden" name="leaveAirport" id="leaveAirport" value=""/>
+			
+			
+			
 			<div class="sort-line clearfix">
 				<ul>
 					<li class="sort-info">航班信息</li>
@@ -729,36 +751,29 @@ display: none;
 
 			<div class="sort-list">
 				<ul>
+				
 				<c:forEach var="flightListInfo" items="${flightList }">
 					<li>
 						<div class="sort-list-detail">
 							<span class="sort-info-list">
-								<h4>${flightListInfo.airlineName }<input type="hidden" name="airlineName" id="airlineNames" value="${flightListInfo.airlineName }"/></h4>
+								<h4>${flightListInfo.airlineName }</h4>
 								<p>${flightListInfo.fid }</p>
-								
-								<input type="hidden" name="fid" id="fids" value=""/>
-								<input type="hidden" name="airlineName" id="airlineNames" value=""/>
 							</span>
 							
 							<span class="sort-start-list">
 								<p>${flightListInfo.leaveTime }</p>
 								<p>${flightListInfo.leaveAirport }</p>
 							</span>
-							<input type="hidden" name="leaveTime" id="leaveTimes" value=""/>
-							<input type="hidden" name="leaveAirport" id="leaveAirports" value=""/>
 						
 							<span class="sort-longarr">
 								<i>${flightListInfo.totalTime }小时</i>
 								<i></i>
 							</span>
-							<input type="hidden" name="totalTime" id="totalTime" value="${flightListInfo.totalTime }"/>
 							
 							<span class="sort-start-list sort-time-list">
 								<p>${flightListInfo.arriveTime }</p>
 								<p>${flightListInfo.arriveAirport }</p>
 							</span>
-							<input type="hidden" name="arriveTime" id="arriveTimes" value=""/>
-							<input type="hidden" name="arriveAirport" id="arriveAirports" value=""/>
 							
 							<span class="sort-stage-list">
 								<em>准点率</em><em>88%</em>
@@ -786,16 +801,16 @@ display: none;
 									</div>
 									
 									
-								<%-- 	<input type="hidden" id="username" value="${userSession.username }" /> --%>
-									
 									<%
 									User sessionName =(User) session.getAttribute("userSession");%>
 									<% if(sessionName != null){%>
 										<button class="submitClass" type="submit" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
-										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }" >选定</button>
+										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
+										price="${(flightListInfo.price/flightListInfo.discount)*0.62}" seatsLeave="${flightListInfo.seatsLeave }">选定</button>
 									<%}else{%>
 										<button class="buttonClass" type="button" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
-										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }">选定</button>
+										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
+										price="${(flightListInfo.price/flightListInfo.discount)*0.62}" seatsLeave="${flightListInfo.seatsLeave }">选定</button>
 									<%}%>
 									
 								</div>
@@ -813,13 +828,14 @@ display: none;
 										<span>￥</span><i><fmt:formatNumber value="${(flightListInfo.price/flightListInfo.discount)*0.56}" pattern="##,###"/></i>
 									</div>
 									
-									<%
-									if(sessionName != null){%>
+									<% if(sessionName != null){%>
 										<button class="submitClass" type="submit" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
-										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }" >选定</button>
+										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
+										price="${(flightListInfo.price/flightListInfo.discount)*0.56}"seatsLeave="${flightListInfo.seatsLeave }" >选定</button>
 									<%}else{%>
 										<button class="buttonClass" type="button" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
-										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }">选定</button>
+										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
+										price="${(flightListInfo.price/flightListInfo.discount)*0.56}" seatsLeave="${flightListInfo.seatsLeave }">选定</button>
 									<%}%>
 								</div>
 								
@@ -834,13 +850,14 @@ display: none;
 										<span>￥</span><i><fmt:formatNumber value="${(flightListInfo.price/flightListInfo.discount)*0.93}" pattern="##,###"/></i>
 						
 									</div>
-									<%
-									if(sessionName != null){%>
+									<% if(sessionName != null){%>
 										<button class="submitClass" type="submit" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
-										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }" >选定</button>
+										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
+										price="${(flightListInfo.price/flightListInfo.discount)*0.93}" seatsLeave="${flightListInfo.seatsLeave }">选定</button>
 									<%}else{%>
 										<button class="buttonClass" type="button" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
-										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }">选定</button>
+										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
+										price="${(flightListInfo.price/flightListInfo.discount)*0.93}" seatsLeave="${flightListInfo.seatsLeave }">选定</button>
 									<%}%>
 								</div>
 
@@ -855,13 +872,14 @@ display: none;
 										<span>￥</span><i><c:out value="${fn:substring(flightListInfo.price/flightListInfo.discount,0,fn:indexOf(flightListInfo.price/flightListInfo.discount, '.'))}"/></i>
 						
 									</div>
-									<%
-									if(sessionName != null){%>
+									<% if(sessionName != null){%>
 										<button class="submitClass" type="submit" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
-										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }" >选定</button>
+										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
+										price="${(flightListInfo.price/flightListInfo.discount)}" seatsLeave="${flightListInfo.seatsLeave }" >选定</button>
 									<%}else{%>
 										<button class="buttonClass" type="button" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
-										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }">选定</button>
+										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
+										price="${(flightListInfo.price/flightListInfo.discount)}" seatsLeave="${flightListInfo.seatsLeave }" >选定</button>
 									<%}%>
 								</div>
 							</div>
@@ -870,8 +888,6 @@ display: none;
 					</c:forEach>
 				</ul>
 				
-				
-				<!-- 增加 开始-->
 				
 				 <div class="login-body" id="login-body">
             		<div id="staticOption">
@@ -896,52 +912,39 @@ display: none;
                             </div>
                         </div>
                       
-                        
 
                     </fieldset>
                     
-                <!--     使用ajax登陆，成功跳转到页面 -->
                 	<button type="button" class="btn btn-danger" id="login">登陆</button>
                 	<button type="button" class="btn btn-danger"  id="back">返回</button>
-                    <!-- <input type="button" class="btn btn-danger" name="login" id="login" value="登陆" >
-                    <input type="button" class="btn btn-danger" name="login2" id="back" value="返回" > -->
-            </div>
-        </div>
-        
-        <!-- 增加 结束-->
-        
-				
-				
-				
+           		 </div>
+       			</div>
 			</div>
-			
 		</form>
-		
-
-		</div>
+	</div>
 
 		<!-- 分页 -->
-	<div class="i_pagewrap clearfix">
-		<div class="i_pages">
-			<a href="javascript:;" class="i_prepage">上一页</a>
-			<a href="#" class="i_current i_num">1</a>
-			<a href="#" class="i_num">2</a>
-			<a href="#" class="i_num">3</a>
-			<a href="#" class="i_num">4</a>
-			<a href="#" class="i_num">5</a>
-			<a href="#" class="i_num">6</a>
-			<a href="#" class="i_num">7</a>
-			<a href="#" class="i_num">8</a>
-			<span class="i_morepage">...</span>
-			<a href="#" class="i_num">25</a>
-			<a href="javascript:;" class="i_nextpage">下一页></a>
-			<div class="i_skippage">
-				<span>到</span>
-				<input type="text">
-				<span>页</span>
-			</div>
-			<a href="#" class="i_ensure">确定</a>		
+<div class="i_pagewrap clearfix">
+	<div class="i_pages">
+		<a href="javascript:;" class="i_prepage">上一页</a>
+		<a href="#" class="i_current i_num">1</a>
+		<a href="#" class="i_num">2</a>
+		<a href="#" class="i_num">3</a>
+		<a href="#" class="i_num">4</a>
+		<a href="#" class="i_num">5</a>
+		<a href="#" class="i_num">6</a>
+		<a href="#" class="i_num">7</a>
+		<a href="#" class="i_num">8</a>
+		<span class="i_morepage">...</span>
+		<a href="#" class="i_num">25</a>
+		<a href="javascript:;" class="i_nextpage">下一页></a>
+		<div class="i_skippage">
+			<span>到</span>
+			<input type="text">
+			<span>页</span>
 		</div>
+		<a href="#" class="i_ensure">确定</a>		
+	</div>
 
 	<!-- 声明 -->
 	 <div class="i_statement">
@@ -954,17 +957,11 @@ display: none;
 				<span>中国民航信息网络股份有限公司提供</span>
 			</p>
 		</div>
-		</div>
-	</div>  
-   
+	</div>
+</div>  
 </div>
-
 </div>
 	<!-- 列表部分结束 -->
-	
-	
-
-	
 
  <input type="hidden" id="path" name="path" value="${pageContext.request.contextPath }"/>
  <input type="hidden" id="referer" name="referer" value="<%=request.getHeader("Referer")%>"/>
@@ -986,8 +983,6 @@ display: none;
 $("#login").on("click",function(){
 	var username = $("#username");
 	var password = $("#password");
-	/* alert(userName);
-	alert(password); */
 	
  	 $.ajax({
 		url:"doTicketLogin",
@@ -997,10 +992,8 @@ $("#login").on("click",function(){
 		success:function(data){
 			if(data.result == "true"){
 				$("#login-body").hide();
-				/* window.location.href="user/makeFlyOrder"; */
 				$("#flight").submit();
 			}else if(data.result == "false"){
-				alert(password.val());
 				$("#password").next().html("密码错误");
 			}
 		}
@@ -1015,6 +1008,9 @@ $(".buttonClass").on("click",function(){
 	var leaveAirport = $(this).attr("leaveAirport");
 	var airlineName = $(this).attr("airlineName");
 	var fid = $(this).attr("fid");
+	var price = Math.round($(this).attr("price"));
+	var seatsLeave=$(this).attr("seatsLeave");
+	alert(seatsLeave);
 	
 	$("#arriveTimes").val(arriveTime);
 	$("#arriveAirports").val(arriveAirport);
@@ -1022,18 +1018,19 @@ $(".buttonClass").on("click",function(){
 	$("#leaveAirports").val(leaveAirport);
 	$("#airlineNames").val(airlineName);
 	$("#fids").val(fid);
+	$("#price").val(price);
+	$("#seatsLeave").val(seatsLeave);
 	
-	alert(fid);
 	$("#login-body").show();
 	
-	
 
-/* 	window.location.href="makeFlyOrder" */
-})
+});
+
 
 $("#back").on("click",function(){
 	$("#login-body").hide();
-})
+});
+
 
 $(".submitClass").on("click",function(){
 	
@@ -1043,6 +1040,9 @@ $(".submitClass").on("click",function(){
 	var leaveAirport = $(this).attr("leaveAirport");
 	var airlineName = $(this).attr("airlineName");
 	var fid = $(this).attr("fid");
+	var price = Math.round($(this).attr("price"));
+	var seatsLeave=$(this).attr("seatsLeave");
+	alert(seatsLeave);
 	
 	$("#arriveTimes").val(arriveTime);
 	$("#arriveAirports").val(arriveAirport);
@@ -1050,9 +1050,14 @@ $(".submitClass").on("click",function(){
 	$("#leaveAirports").val(leaveAirport);
 	$("#airlineNames").val(airlineName);
 	$("#fids").val(fid);
+	$("#price").val(price);
+	$("#seatsLeave").val(seatsLeave);
+	
+	
+	
 	
 
-})
+});
 
 
 

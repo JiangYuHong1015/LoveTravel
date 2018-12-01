@@ -25,9 +25,21 @@ public class FlightOrder {
 
     private String phone;
     
+    private String price;
+    
     
 
-    public String getLeaveDate() {
+
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getLeaveDate() {
 		return leaveDate;
 	}
 

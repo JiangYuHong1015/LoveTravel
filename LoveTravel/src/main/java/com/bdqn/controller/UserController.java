@@ -82,20 +82,26 @@ public class UserController {
 		
 		HashMap<String, String> resultMap = new HashMap<String,String>();
 		
+		//username为null/空
 		if(StringUtils.isNullOrEmpty(username)){
 			resultMap.put("result", "empty");
+			
+		//username非空/null时，根据username查找user
 		}else{
+			
 			User user = null;
 			
 			try {
-				//调用方法从数据库查找user
 				user = userService.userExist(username);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
+			//找到user
 			if(null != user){
 				resultMap.put("result", "exist");
+			
+			//根据username没有找到user
 			}else{
 				resultMap.put("result", "noexist");
 			}
@@ -121,14 +127,13 @@ public class UserController {
 		try {
 			User user = userService.doLogin(username, password);
 			if(null != user){
-				//将user放入session
+				//将查询到的user放入session
 				session.setAttribute(Constants.USER_SESSION, user);
 				
 				resultMap.put("result", "true");
 			}else{
 				resultMap.put("result", "false");
 			}
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -145,6 +150,7 @@ public class UserController {
 	@RequestMapping(value="/doLogut")
 	public String doLogut(HttpSession session){
 		logger.debug("doLogut================");
+		//清空session中的user,退出登陆
 		session.removeAttribute(Constants.USER_SESSION);
 		return "index";
 		
@@ -163,6 +169,7 @@ public class UserController {
 		
 		
 		try {
+			//调用登陆方法,返回查找到的对象user
 			User user = userService.doLogin(param, password);
 			if(null != user){
 				//将user放入session
@@ -185,10 +192,7 @@ public class UserController {
 	public String userMain(HttpSession session){
 		logger.debug("userMain================");
 		User user = (User)session.getAttribute(Constants.USER_SESSION);
-		
-		if(null == user){
-			return "error";
-		}
+
 		try {
 			 user = userService.getUserRoleName(user.getId());
 			 session.setAttribute(Constants.USER_SESSION, user);

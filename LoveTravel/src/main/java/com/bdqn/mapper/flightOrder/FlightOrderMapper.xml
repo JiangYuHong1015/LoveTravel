@@ -17,6 +17,20 @@
   </resultMap>
   
   
+    <insert id="insert" parameterType="com.bdqn.pojo.FlightOrder" >
+    insert into flightorder (id, fid, leaveDate, 
+      leaveCity, arriveCity, leaveTime, 
+      arriveTime, leaveAirport, arriveAirport, 
+      contactName, cardNo, phone,price
+      )
+    values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=VARCHAR}, #{leaveDate,jdbcType=VARCHAR}, 
+      #{leaveCity,jdbcType=VARCHAR}, #{arriveCity,jdbcType=VARCHAR}, #{leaveTime,jdbcType=VARCHAR}, 
+      #{arriveTime,jdbcType=VARCHAR}, #{leaveAirport,jdbcType=VARCHAR}, #{arriveAirport,jdbcType=VARCHAR}, 
+      #{contactName,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},#{price,jdbcType=INTEGER}
+      )
+  </insert>
+  
+  
   
   
   
@@ -113,18 +127,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bdqn.pojo.FlightOrder" >
-    insert into flightorder (id, fid, leaveDate, 
-      leaveCity, arriveCity, leaveTime, 
-      arriveTime, leaveAirport, arriveAirport, 
-      contactName, cardNo, phone
-      )
-    values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=VARCHAR}, #{leavedate,jdbcType=VARCHAR}, 
-      #{leavecity,jdbcType=VARCHAR}, #{arrivecity,jdbcType=VARCHAR}, #{leavetime,jdbcType=VARCHAR}, 
-      #{arrivetime,jdbcType=VARCHAR}, #{leaveairport,jdbcType=VARCHAR}, #{arriveairport,jdbcType=VARCHAR}, 
-      #{contactname,jdbcType=VARCHAR}, #{cardno,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}
-      )
-  </insert>
+
   <insert id="insertSelective" parameterType="com.bdqn.pojo.FlightOrder" >
     insert into flightorder
     <trim prefix="(" suffix=")" suffixOverrides="," >

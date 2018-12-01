@@ -68,6 +68,18 @@
 						<p>手机扫一扫，享受专属福利</p>
 					</div>
 				</li>
+				<li class="i-top-phone i-top-wei">
+				 	<img alt="" src="${pageContext.request.contextPath }/statics/images/img.jpg" width="30" height="30">
+                  			<span class="tx-top"></span>
+					<div class="i-top-app i-top-app-wei">
+						<div id="topClass">
+							<a href="${pageContext.request.contextPath }/user/userView">酒店预定</a><br/>
+							<a href="${pageContext.request.contextPath }/flyTicket">机票优惠</a><br/>
+							<a href="${pageContext.request.contextPath }/user/userView">最新攻略</a><br/>
+							<a href="${pageContext.request.contextPath }/doLogut">退出登陆</a>
+						</div>
+					</div>
+				</li> 
 			</ul>
 		</div>
 	</div>
@@ -160,6 +172,8 @@
 	          <input type="hidden" name="arriveTime" value="${flight.arriveTime }" />
 	          <input type="hidden" name="leaveAirport" value="${flight.leaveAirport }" />
 	          <input type="hidden" name="arriveAirport" value="${flight.arriveAirport }" />
+	          <input type="hidden" name="price" value="${price }" />
+	          <input type="hidden" name="seatsLeave" value="${flight.seatsLeave }" />
 	         
 	          <div class="ln_solid"></div>
 	          <div class="form-group">
@@ -185,7 +199,7 @@
 	
 	<div class="login-footer">
 	    <div class="footer-message">
-	        1.目前该舱位仅剩3个座位，请尽快完成预订。<br>
+	        1.目前该舱位仅剩${flight.seatsLeave }个座位，请尽快完成预订。<br>
 	   	    2.您预订的产品仅限预订成人票，不可使用港澳通行证预订。<br>
 	        3.该航班预计最晚于起飞前24小时完成出票。<br>
 	    </div>
@@ -193,7 +207,8 @@
         
     <div class="login-footer">
        <div class="footer-message">
-        	 航班号：${flight.fid } <br>
+        	 航班号：${flight.fid }&nbsp;&nbsp;&nbsp; 价格：${price }<br>
+        	 <%-- 时间 ${flight.totalTime } --%>
          ${flight.leaveDate } &nbsp;&nbsp;&nbsp; ${flight.leaveCity }    ------>  ${flight.arriveCity }<br>
       	        
                              起飞时间：${flight.leaveTime }&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   落地时间：${flight.arriveTime }<br>

@@ -12,7 +12,9 @@ public interface FlightOrderMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(FlightOrder record);
+    //插入订单信息
+    int insert(FlightOrder record) throws Exception;
+    
 
     int insertSelective(FlightOrder record);
 

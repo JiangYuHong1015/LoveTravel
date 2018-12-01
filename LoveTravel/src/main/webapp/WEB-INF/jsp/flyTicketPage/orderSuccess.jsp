@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/lib/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/statics/css/login.css"/>
   
-  
    	<link rel="dns-prefetch" href="//webresource.c-ctrip.com" />
     <link rel="dns-prefetch" href="//pic.c-ctrip.com" />
     <link rel="dns-prefetch" href="//images3.c-ctrip.com" />
@@ -29,19 +28,10 @@
     <link rel="dns-prefetch" href="//www.google-analytics.com" />
     <link href="//webresource.c-ctrip.com/ResFlightOnline/I4/css/book.css?releaseno=CR_2018_11_14_12_00_01" rel="stylesheet" type="text/css" />
   
-  
     <script src="${pageContext.request.contextPath }/statics/lib/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath }/statics/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath }/statics/js/common.js"></script>
     <script src="${pageContext.request.contextPath }/statics/js/util.js"></script>
-
-<!-- <style type="text/css">
-	body{
-		background:#87CEFA;
-	}
-
-</style> -->
-
 </head>
 
 
@@ -75,29 +65,41 @@
 						<p>手机扫一扫，享受专属福利</p>
 					</div>
 				</li>
+				 <li class="i-top-phone i-top-wei">
+				 	<img alt="" src="${pageContext.request.contextPath }/statics/images/img.jpg" width="30" height="30">
+                  	<span class="tx-top"></span>
+					<div class="i-top-app i-top-app-wei">
+						<div id="topClass">
+							<a href="${pageContext.request.contextPath }/user/userView">酒店预定</a><br/>
+							<a href="${pageContext.request.contextPath }/flyTicket">机票优惠</a><br/>
+							<a href="${pageContext.request.contextPath }/user/userView">最新攻略</a><br/>
+							<a href="${pageContext.request.contextPath }/doLogut">退出登陆</a>
+						</div>
+					</div>
+				</li> 
 			</ul>
 		</div>
 	</div>
 </div>
 <!-- 头部结束 -->
 
-    <div class="header-wrapper">
-        <div class="header" id="J_hd">
-            <div class="order-progress">
-                <div class="prog-step ">
-                    <div class="progress-line"></div>
-                    <h4>乘机信息</h4>
-                </div>
-                <div class="prog-step ">
-                    <div class="progress-line"></div>
-                    <h4>支付</h4>
-                </div>
-                <div class="prog-step prog-last prog-current">
-                    <h4><i class="icon ico-step"></i>完成</h4>
-                </div>
+<div class="header-wrapper">
+    <div class="header" id="J_hd">
+        <div class="order-progress">
+            <div class="prog-step ">
+                <div class="progress-line"></div>
+                <h4>乘机信息</h4>
+            </div>
+            <div class="prog-step ">
+                <div class="progress-line"></div>
+                <h4>支付</h4>
+            </div>
+            <div class="prog-step prog-last prog-current">
+                <h4><i class="icon ico-step"></i>完成</h4>
             </div>
         </div>
     </div>
+</div>
 
 
 <div class="travel-login">
@@ -118,25 +120,20 @@
     <aside>
         <div class="login-header">
             <div>
-                <span >订单信息</span>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath }/flyTicket">|&nbsp;&nbsp; 继续订票 </a>
-            
+                <span >订单信息&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath }/flyTicket" style="color:blue;"> &nbsp;&nbsp; 继续订票 </a>
             </div>
-            
             <span class="right-erweima "></span>
-        
         </div>
         
         <div class="login-footer">
             <div class="footer-message">
-             	 航班号：${flightOrder.fid } <br>
+             	 航班号：${flightOrder.fid }&nbsp;&nbsp;&nbsp;价格：${flightOrder.price } <br>
               ${flightOrder.leaveDate } &nbsp;&nbsp;&nbsp; ${flightOrder.leaveCity }    ------>  ${flightOrder.arriveCity }<br>
            	        
                                   起飞时间：${flightOrder.leaveTime }&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   落地时间：${flightOrder.arriveTime }<br>
                                   起飞机场：${flightOrder.leaveAirport } &nbsp;&nbsp;&nbsp;  落地机场：${flightOrder.arriveAirport }<br>
             </div>
      	</div>
-        
-        
         
          <div class="login-footer">
             <div class="footer-message">
@@ -146,14 +143,9 @@
         </div>     
         
         <div class="login-footer"></div>
-						
-        
-
     </aside>
-
     <input type="hidden" id="path" name="path" value="${pageContext.request.contextPath }"/>
 </div>
-
 
 
 <script type="text/javascript" src="${pageContext.request.contextPath }/statics/js/jquery-1.8.3.min.js"></script>

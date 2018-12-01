@@ -51,6 +51,10 @@
 	</if>
   </select>
   
+  <update id="updateSeatsNum" parameterType="flight">
+  	update flight set seatsLeave=#{seatsLeave} where fid=#{fid}
+  
+  </update>
   
   
   <sql id="Example_Where_Clause" >

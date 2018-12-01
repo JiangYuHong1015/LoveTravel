@@ -18,6 +18,7 @@ import com.bdqn.pojo.Line;
 import com.bdqn.pojo.TicketPromotion;
 import com.bdqn.service.airlines.AirlinesService;
 import com.bdqn.service.flight.FlightService;
+import com.bdqn.service.flightOrder.FlightOrderServise;
 import com.bdqn.service.line.LineService;
 import com.bdqn.service.ticketPromotion.TicketPromotionService;
 
@@ -32,22 +33,22 @@ public class FlyTicketController extends BaseController {
 	private AirlinesService airlinesService;
 	@Resource
 	private LineService lineService;
-	
 	@Resource
 	private TicketPromotionService ticketPromotionService;
+	@Resource
+	private FlightOrderServise flightOrderServise;
 	
 	@RequestMapping(value="/flyTicket")
 	public String flyTicketIndex(){
 		
 		logger.debug("flyTicketIndex============>");
 		
-		
 		return "flyTicketPage/flyTicket";
 		
 	}
 	
 	
-	@RequestMapping(value="/flyTicketList"/*,method=RequestMethod.POST*/)
+	@RequestMapping(value="/flyTicketList",method=RequestMethod.POST)
 	public String getFlyTicketList(Flight flight,
 			@RequestParam(value="leaveDate",required=false)String leaveDate,Model model){
 		logger.debug("getFlyTicketList============>");
@@ -102,27 +103,41 @@ public class FlyTicketController extends BaseController {
 	}
 	
 	@RequestMapping(value="user/makeFlyOrder")
-	public String makeOrder(Flight flight,Model model){
+	public String makeOrder(Flight flight,Model model,String price){
 		model.addAttribute("flight", flight);
+		model.addAttribute("price", price);
+		
 		return "flyTicketPage/orderTicket";
 	}
 	
 	
 	@RequestMapping(value="user/payForTicket")
-	public String payForTicket(FlightOrder flightOrder,Model model){
+	public String payForTicket(FlightOrder flightOrder,Model model,String seatsLeave){
 		model.addAttribute("flightOrder", flightOrder);
+		model.addAttribute("seatsLeave", seatsLeave);
 		return "flyTicketPage/payForTicket";
 		
 	}
 	
 	@RequestMapping(value="user/success")
-	public String success(FlightOrder flightOrder,Model model){
+	public String success(FlightOrder flightOrder,Model model,String seatsLeave){
 		
+		int seatsNum = Integer.parseInt(seatsLeave);
 		
-		model.addAttribute("flightOrder", flightOrder);
 		//需要加入订单信息
-		//需要修改剩余座位数
-		return "flyTicketPage/orderSuccess";
+		boolean flag = flightOrderServise.insert(flightOrder);
+		//添加订单成功时，才修改剩余座位数	
+		if(flag){
+			
+			boolean flag2 = flightService.updateSeatsNum(seatsNum, flightOrder.getFid());
+			
+			if(flag2){
+				model.addAttribute("flightOrder", flightOrder);
+				return "flyTicketPage/orderSuccess";
+			}
+		}
+		
+		return "flyTicketPage/payForTicket";
 		
 	}
 	

@@ -24,5 +24,18 @@ public interface FlightService{
 	 */
 	List<Flight> getFlyTicketList(Flight flight) throws Exception;
 	
+
+	
+	/**
+	 * 更新剩余座位数
+	 * @param seatsLeave 当前数量
+	 * @param fid 航班号
+	 * @return
+	 * @throws Exception
+	 */
+	boolean updateSeatsNum(int seatsLeave,String fid);	
+   
+	
+	
 	
 }

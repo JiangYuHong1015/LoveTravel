@@ -75,6 +75,18 @@
 						<p>手机扫一扫，享受专属福利</p>
 					</div>
 				</li>
+				 <li class="i-top-phone i-top-wei">
+				 	<img alt="" src="${pageContext.request.contextPath }/statics/images/img.jpg" width="30" height="30">
+                 	<span class="tx-top"></span>
+					<div class="i-top-app i-top-app-wei">
+						<div id="topClass">
+							<a href="${pageContext.request.contextPath }/user/userView">酒店预定</a><br/>
+							<a href="${pageContext.request.contextPath }/flyTicket">机票优惠</a><br/>
+							<a href="${pageContext.request.contextPath }/user/userView">最新攻略</a><br/>
+							<a href="${pageContext.request.contextPath }/doLogut">退出登陆</a>
+						</div>
+					</div>
+				</li> 
 			</ul>
 		</div>
 	</div>
@@ -129,7 +141,14 @@
             </div>
           </div>
           
-        
+          
+           <div class="item form-group">
+           		<label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">机票价格 <span class="required">*</span></label>
+            	<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+	               <input type="text" class="form-control has-feedback-left" name="price" id="price" readonly="readonly" value="${flightOrder.price }">
+	               <font color="red"></font>
+                </div>
+          </div>        
           
            <div class="item form-group">
            		<label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">支付账号 <span class="required">*</span></label>
@@ -159,6 +178,7 @@
           <input type="hidden" name="contactName" value="${flightOrder.contactName }" />
           <input type="hidden" name="cardNo" value="${flightOrder.cardNo }" />
           <input type="hidden" name="phone" value="${flightOrder.phone }" />
+          <input type="hidden" name=seatsLeave value="${seatsLeave }" />
          
           <div class="ln_solid"></div>
           <div class="form-group">
@@ -178,18 +198,14 @@
         <div class="login-header">
             <div>
                 <span>订单信息</span>&nbsp;&nbsp;&nbsp;<a href="#"> 注意事项 | </a>请确保旅客信息正确无误！
-            
             </div>
-            
             <span class="right-erweima "></span>
-        
         </div>
          
-        
          
         <div class="login-footer">
             <div class="footer-message">
-                1.目前该舱位仅剩3个座位，请尽快完成预订。<br>
+                1.目前该舱位仅剩${seatsLeave }个座位，请尽快完成预订。<br>
            	    2.您预订的产品仅限预订成人票，不可使用港澳通行证预订。<br>
                 3.该航班预计最晚于起飞前24小时完成出票。<br>
             </div>
@@ -198,7 +214,7 @@
         
         <div class="login-footer">
             <div class="footer-message">
-             	 航班号：${flightOrder.fid } <br>
+             	 航班号：${flightOrder.fid }&nbsp;&nbsp;&nbsp;价格：${flightOrder.price } <br>
               ${flightOrder.leaveDate } &nbsp;&nbsp;&nbsp; ${flightOrder.leaveCity }    ------>  ${flightOrder.arriveCity }<br>
            	        
                                   起飞时间：${flightOrder.leaveTime }&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   落地时间：${flightOrder.arriveTime }<br>
