@@ -20,6 +20,8 @@ public class BaseController {
 
 		dataBinder.registerCustomEditor(Date.class, 
 				new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true));
+		
+		
 
 	}
 
