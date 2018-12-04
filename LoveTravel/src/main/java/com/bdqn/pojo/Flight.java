@@ -33,19 +33,36 @@ public class Flight {
     
     //时间标签，标识早晚，1表示从早到晚 ，2表示从晚到早排序
     private String timeLable;
-    
     //出发日期
     private String leaveDate;
-    
     //日期编号
     private String dateNo;
-    
     //折扣
     private double discount;
+    //航班总座位数
+    private int totalSeats;
+    //剩余座位数
+    private int currentSeats;
 
    
 
 	
+
+	public int getTotalSeats() {
+		return totalSeats;
+	}
+
+	public void setTotalSeats(int totalSeats) {
+		this.totalSeats = totalSeats;
+	}
+
+	public int getCurrentSeats() {
+		return currentSeats;
+	}
+
+	public void setCurrentSeats(int currentSeats) {
+		this.currentSeats = currentSeats;
+	}
 
 	public double getDiscount() {
 		return discount;

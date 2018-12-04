@@ -56,7 +56,7 @@
 	<div class="i-nav clearfix">
 		<div class="i-nav-wrap">
 			<ul>
-				<li><a href="index.html" ><i class="icon-home"></i>首页</a></li>
+				<li><a href="${pageContext.request.contextPath }" ><i class="icon-home"></i>首页</a></li>
 				<li><a href="travel/index.html"><i class="icon-globe"></i>旅游</a></li>
 				<li><a href="tavern/index.html"><i class="icon-hospital"></i>酒店</a></li>
 				<li class="current"><a href="flyTicket.html"><i class="icon-plane"></i>机票</a></li>

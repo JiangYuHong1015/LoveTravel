@@ -25,7 +25,7 @@ public class FlightServiceImpl implements FlightService {
 		
 	}
 
-	@Override
+	/*@Override
 	public boolean updateSeatsNum(int seatsLeave, String fid)  {
 		boolean flag = false;
 		
@@ -39,6 +39,6 @@ public class FlightServiceImpl implements FlightService {
 			e.printStackTrace();
 		}
 		return flag;
-	}
+	}*/
 
 }

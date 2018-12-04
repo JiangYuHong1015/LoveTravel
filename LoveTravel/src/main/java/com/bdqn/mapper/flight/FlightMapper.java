@@ -15,7 +15,7 @@ public interface FlightMapper {
 	List<Flight> getFlyTicketList(Flight flight) throws Exception;
 	
 	//更新剩余座位数
-	int updateSeatsNum(@Param(value="seatsLeave")int seatsLeave,@Param(value="fid")String fid) throws Exception;	
+	//int updateSeatsNum(@Param(value="seatsLeave")int seatsLeave,@Param(value="fid")String fid) throws Exception;	
    
 	
 	

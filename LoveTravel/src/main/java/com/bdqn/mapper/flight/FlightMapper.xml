@@ -26,7 +26,7 @@
 				WHERE f.LID=c.lineID
 				AND b.airlineId = f.AID) AS e,
 				price as p
-	where P.flightID =e.fid
+	where P.flightID =e.fid AND P.currentSeats != 0
 	
 	
 	<if test="dateNo != null and dateNo != '' ">
@@ -51,12 +51,7 @@
 	</if>
   </select>
   
-  <update id="updateSeatsNum" parameterType="flight">
-  	update flight set seatsLeave=#{seatsLeave} where fid=#{fid}
-  
-  </update>
-  
-  
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

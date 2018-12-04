@@ -7,7 +7,16 @@
     <result column="date" property="date" jdbcType="INTEGER" />
     <result column="price" property="price" jdbcType="INTEGER" />
     <result column="discount" property="discount" jdbcType="VARCHAR" />
+    <result column="totalSeats" property="totalSeats" jdbcType="INTEGER" />
+    <result column="currentSeats" property="currentSeats" jdbcType="INTEGER" />
   </resultMap>
+  
+  
+  <update id="updateSeatsNum" parameterType="price">
+  		update price set currentSeats=#{currentSeats} where flightId=#{flightId} and dateNo=#{dateNo}
+  
+  </update>
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

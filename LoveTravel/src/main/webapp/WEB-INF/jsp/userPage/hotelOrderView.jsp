@@ -73,7 +73,7 @@
 													<div id="purchase-jobOE-grid" class="list-view">
 														<ul class="fix list-ul">
 															<li class="courseDetail fix"><a href="http://www.kgc.cn/job/oe/31257.shtml" class="courseImg left" target="_blank">
-																<img src="${hotelorder.hotelpic }" width="220" height="124" onerror="this.src='/img/video_default20160105.jpg'" /></a>
+																<img src="${hotelorder.hotelpic }" width="220" height="124" alt="图片加载失败"/></a>
 																<div class="courseInfo left">
 																	<input type="hidden" id="api" value="http://api.kgc.cn">
 																		<a class="courseTitle f16 black" href="http://www.kgc.cn/job/oe/31257.shtml" target="_blank">${hotelorder.hotelname }</a><br/>

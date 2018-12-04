@@ -15,11 +15,13 @@ import com.bdqn.pojo.Airlines;
 import com.bdqn.pojo.Flight;
 import com.bdqn.pojo.FlightOrder;
 import com.bdqn.pojo.Line;
+import com.bdqn.pojo.Price;
 import com.bdqn.pojo.TicketPromotion;
 import com.bdqn.service.airlines.AirlinesService;
 import com.bdqn.service.flight.FlightService;
 import com.bdqn.service.flightOrder.FlightOrderServise;
 import com.bdqn.service.line.LineService;
+import com.bdqn.service.price.PriceService;
 import com.bdqn.service.ticketPromotion.TicketPromotionService;
 
 @Controller
@@ -37,6 +39,8 @@ public class FlyTicketController extends BaseController {
 	private TicketPromotionService ticketPromotionService;
 	@Resource
 	private FlightOrderServise flightOrderServise;
+	@Resource
+	private PriceService priceService;
 	
 	@RequestMapping(value="/flyTicket")
 	public String flyTicketIndex(){
@@ -112,24 +116,32 @@ public class FlyTicketController extends BaseController {
 	
 	
 	@RequestMapping(value="user/payForTicket")
-	public String payForTicket(FlightOrder flightOrder,Model model,String seatsLeave){
+	public String payForTicket(FlightOrder flightOrder,Model model,String currentSeats){
 		model.addAttribute("flightOrder", flightOrder);
-		model.addAttribute("seatsLeave", seatsLeave);
+		model.addAttribute("currentSeats", currentSeats);
 		return "flyTicketPage/payForTicket";
 		
 	}
 	
 	@RequestMapping(value="user/success")
-	public String success(FlightOrder flightOrder,Model model,String seatsLeave){
+	public String success(FlightOrder flightOrder,Model model,String currentSeats){
 		
-		int seatsNum = Integer.parseInt(seatsLeave);
+		Price price  = new Price();
+		int seatsNum = Integer.parseInt(currentSeats)-1;
+		String dateNo = flightOrder.getLeaveDate().substring(8, 10);
+		price.setCurrentSeats(seatsNum);
+		price.setFlightId(flightOrder.getFid());
+		price.setDateNo(Integer.parseInt(dateNo));
+		
+		
 		
 		//需要加入订单信息
 		boolean flag = flightOrderServise.insert(flightOrder);
 		//添加订单成功时，才修改剩余座位数	
 		if(flag){
 			
-			boolean flag2 = flightService.updateSeatsNum(seatsNum, flightOrder.getFid());
+			//boolean flag2 = flightService.updateSeatsNum(seatsNum, flightOrder.getFid());
+			boolean flag2 = priceService.updateSeatsNum(price);
 			
 			if(flag2){
 				model.addAttribute("flightOrder", flightOrder);

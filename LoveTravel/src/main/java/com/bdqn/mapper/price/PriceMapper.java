@@ -6,6 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PriceMapper {
+	
+	//更新当前座位数量
+	int updateSeatsNum(Price price)throws Exception;
+	
+	
     int countByExample(PriceExample example);
 
     int deleteByExample(PriceExample example);

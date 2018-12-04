@@ -33,7 +33,7 @@ public interface FlightService{
 	 * @return
 	 * @throws Exception
 	 */
-	boolean updateSeatsNum(int seatsLeave,String fid);	
+	//boolean updateSeatsNum(int seatsLeave,String fid);	
    
 	
 	

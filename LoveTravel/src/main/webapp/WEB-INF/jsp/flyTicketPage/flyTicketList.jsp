@@ -45,6 +45,7 @@ display: none;
 		</div>
 		<div class="i-hotline fr">
 			<ul>
+				<li><a href="${pageContext.request.contextPath }">首页</a></li>
 				<li><a href="#">客服中心</a></li>
 				<li>|</li>
 				<li><a href="#">24小时热线：400-855-6666</a></li>
@@ -734,7 +735,7 @@ display: none;
 			<input type="hidden" name="price" id="price" value=""/>
 			<input type="hidden" name="arriveTime" id="arriveTimes" value=""/>
 			<input type="hidden" name="arriveAirport" id="arriveAirports" value=""/>
-			<input type="hidden" name="seatsLeave" id="seatsLeave" value=""/>
+			<input type="hidden" name="currentSeats" id="currentSeats" value=""/>
 			
 			
 			
@@ -806,11 +807,11 @@ display: none;
 									<% if(sessionName != null){%>
 										<button class="submitClass" type="submit" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
 										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
-										price="${(flightListInfo.price/flightListInfo.discount)*0.62}" seatsLeave="${flightListInfo.seatsLeave }">选定</button>
+										price="${(flightListInfo.price/flightListInfo.discount)*0.62}" currentSeats="${flightListInfo.currentSeats }">选定</button>
 									<%}else{%>
 										<button class="buttonClass" type="button" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
 										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
-										price="${(flightListInfo.price/flightListInfo.discount)*0.62}" seatsLeave="${flightListInfo.seatsLeave }">选定</button>
+										price="${(flightListInfo.price/flightListInfo.discount)*0.62}" currentSeats="${flightListInfo.currentSeats }">选定</button>
 									<%}%>
 									
 								</div>
@@ -831,11 +832,11 @@ display: none;
 									<% if(sessionName != null){%>
 										<button class="submitClass" type="submit" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
 										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
-										price="${(flightListInfo.price/flightListInfo.discount)*0.56}"seatsLeave="${flightListInfo.seatsLeave }" >选定</button>
+										price="${(flightListInfo.price/flightListInfo.discount)*0.56}"currentSeats="${flightListInfo.currentSeats }" >选定</button>
 									<%}else{%>
 										<button class="buttonClass" type="button" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
 										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
-										price="${(flightListInfo.price/flightListInfo.discount)*0.56}" seatsLeave="${flightListInfo.seatsLeave }">选定</button>
+										price="${(flightListInfo.price/flightListInfo.discount)*0.56}" currentSeats="${flightListInfo.currentSeats }">选定</button>
 									<%}%>
 								</div>
 								
@@ -853,11 +854,11 @@ display: none;
 									<% if(sessionName != null){%>
 										<button class="submitClass" type="submit" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
 										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
-										price="${(flightListInfo.price/flightListInfo.discount)*0.93}" seatsLeave="${flightListInfo.seatsLeave }">选定</button>
+										price="${(flightListInfo.price/flightListInfo.discount)*0.93}" currentSeats="${flightListInfo.currentSeats }">选定</button>
 									<%}else{%>
 										<button class="buttonClass" type="button" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
 										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
-										price="${(flightListInfo.price/flightListInfo.discount)*0.93}" seatsLeave="${flightListInfo.seatsLeave }">选定</button>
+										price="${(flightListInfo.price/flightListInfo.discount)*0.93}" currentSeats="${flightListInfo.currentSeats }">选定</button>
 									<%}%>
 								</div>
 
@@ -875,11 +876,11 @@ display: none;
 									<% if(sessionName != null){%>
 										<button class="submitClass" type="submit" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
 										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
-										price="${(flightListInfo.price/flightListInfo.discount)}" seatsLeave="${flightListInfo.seatsLeave }" >选定</button>
+										price="${(flightListInfo.price/flightListInfo.discount)}" currentSeats="${flightListInfo.currentSeats }" >选定</button>
 									<%}else{%>
 										<button class="buttonClass" type="button" fid="${flightListInfo.fid }" arriveTime="${flightListInfo.arriveTime }" arriveAirport="${flightListInfo.arriveAirport }"
 										leaveTime="${flightListInfo.leaveTime }"leaveAirport="${flightListInfo.leaveAirport }" airlineName="${flightListInfo.airlineName }"
-										price="${(flightListInfo.price/flightListInfo.discount)}" seatsLeave="${flightListInfo.seatsLeave }" >选定</button>
+										price="${(flightListInfo.price/flightListInfo.discount)}" currentSeats="${flightListInfo.currentSeats }" >选定</button>
 									<%}%>
 								</div>
 							</div>
@@ -1009,8 +1010,8 @@ $(".buttonClass").on("click",function(){
 	var airlineName = $(this).attr("airlineName");
 	var fid = $(this).attr("fid");
 	var price = Math.round($(this).attr("price"));
-	var seatsLeave=$(this).attr("seatsLeave");
-	alert(seatsLeave);
+	var currentSeats=$(this).attr("currentSeats");
+	alert(currentSeats);
 	
 	$("#arriveTimes").val(arriveTime);
 	$("#arriveAirports").val(arriveAirport);
@@ -1019,7 +1020,7 @@ $(".buttonClass").on("click",function(){
 	$("#airlineNames").val(airlineName);
 	$("#fids").val(fid);
 	$("#price").val(price);
-	$("#seatsLeave").val(seatsLeave);
+	$("#currentSeats").val(currentSeats);
 	
 	$("#login-body").show();
 	
@@ -1041,8 +1042,8 @@ $(".submitClass").on("click",function(){
 	var airlineName = $(this).attr("airlineName");
 	var fid = $(this).attr("fid");
 	var price = Math.round($(this).attr("price"));
-	var seatsLeave=$(this).attr("seatsLeave");
-	alert(seatsLeave);
+	var currentSeats=$(this).attr("currentSeats");
+	alert(currentSeats);
 	
 	$("#arriveTimes").val(arriveTime);
 	$("#arriveAirports").val(arriveAirport);
@@ -1051,7 +1052,7 @@ $(".submitClass").on("click",function(){
 	$("#airlineNames").val(airlineName);
 	$("#fids").val(fid);
 	$("#price").val(price);
-	$("#seatsLeave").val(seatsLeave);
+	$("#currentSeats").val(currentSeats);
 	
 	
 	

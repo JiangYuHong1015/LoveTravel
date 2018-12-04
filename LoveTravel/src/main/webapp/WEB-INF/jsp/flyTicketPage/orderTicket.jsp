@@ -173,7 +173,7 @@
 	          <input type="hidden" name="leaveAirport" value="${flight.leaveAirport }" />
 	          <input type="hidden" name="arriveAirport" value="${flight.arriveAirport }" />
 	          <input type="hidden" name="price" value="${price }" />
-	          <input type="hidden" name="seatsLeave" value="${flight.seatsLeave }" />
+	          <input type="hidden" name="currentSeats" value="${flight.currentSeats }" />
 	         
 	          <div class="ln_solid"></div>
 	          <div class="form-group">
@@ -199,7 +199,7 @@
 	
 	<div class="login-footer">
 	    <div class="footer-message">
-	        1.目前该舱位仅剩${flight.seatsLeave }个座位，请尽快完成预订。<br>
+	        1.目前该舱位仅剩${flight.currentSeats }个座位，请尽快完成预订。<br>
 	   	    2.您预订的产品仅限预订成人票，不可使用港澳通行证预订。<br>
 	        3.该航班预计最晚于起飞前24小时完成出票。<br>
 	    </div>
